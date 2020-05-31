@@ -41,7 +41,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
+    <Compile Include="HandCalculating\Hand.cs" />
+    <Compile Include="HandCalculating\YakuList\Chankan.cs" />
+    <Compile Include="HandCalculating\YakuList\DaburuRiichi.cs" />
+    <Compile Include="HandCalculating\YakuList\Haitei.cs" />
+    <Compile Include="HandCalculating\YakuList\Houtei.cs" />
+    <Compile Include="HandCalculating\YakuList\Ippatsu.cs" />
+    <Compile Include="HandCalculating\YakuList\NagashiMangan.cs" />
+    <Compile Include="HandCalculating\YakuList\Pinfu.cs" />
+    <Compile Include="HandCalculating\YakuList\Renhou.cs" />
+    <Compile Include="HandCalculating\YakuList\Riichi.cs" />
+    <Compile Include="HandCalculating\YakuList\Rinshan.cs" />
+    <Compile Include="HandCalculating\YakuList\Tanyao.cs" />
+    <Compile Include="HandCalculating\YakuList\Tsumo.cs" />
+    <Compile Include="HandCalculating\YakuList\Yaku.cs" />
+    <Compile Include="Meld.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tiles\TileID.cs" />
+    <Compile Include="Tiles\TileKind.cs" />
+    <Compile Include="Tiles\Tiles136.cs" />
+    <Compile Include="Tiles\Tiles34.cs" />
+    <Compile Include="Tiles\TilesSet.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="HandCalculating\YakuList\Yakuman\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
