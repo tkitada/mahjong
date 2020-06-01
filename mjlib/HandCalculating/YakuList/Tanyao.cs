@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace mjlib.HandCalculating.YakuList
 {
-    class Tanyao : Yaku
+    internal class Tanyao : Yaku
     {
         public override int YakuID => 11;
         public override int TenhouID => 8;
@@ -16,9 +12,10 @@ namespace mjlib.HandCalculating.YakuList
         public override int HanOpen => 1;
         public override int HanClosed => 1;
         public override bool IsYakuman => false;
+
         public override bool IsConditionMet(Hand hand, object[] args)
         {
-
+            throw new NotImplementedException();
         }
     }
 }

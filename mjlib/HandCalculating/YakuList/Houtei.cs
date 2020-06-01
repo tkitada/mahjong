@@ -3,7 +3,7 @@
     internal class Houtei : Yaku
     {
         public override int YakuID => 6;
-        public override int? TenhouID => 6;
+        public override int TenhouID => 6;
         public override string Name => "Houtei Raoyui";
         public override string Japanese => "河底撈魚";
         public override string English => "Win by last discard";
