@@ -2,7 +2,7 @@
 
 namespace mjlib.Tiles
 {
-    internal class TileKind
+    public class TileKind
     {
         public int Value { get; }
 

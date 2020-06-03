@@ -1,6 +1,6 @@
 ﻿namespace mjlib.Tiles
 {
-    internal class TileID
+    public class TileID
     {
         public int Value { get; }
 

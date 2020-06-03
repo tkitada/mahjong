@@ -6,7 +6,7 @@ using static mjlib.Constants;
 
 namespace mjlib.Tiles
 {
-    internal class TilesSet : IEnumerable<int>
+    public class TilesSet : IEnumerable<int>
     {
         private readonly IList<int> tiles_;
 
@@ -45,6 +45,25 @@ namespace mjlib.Tiles
         IEnumerator IEnumerable.GetEnumerator()
         {
             return ((IEnumerable)tiles_).GetEnumerator();
+        }
+
+        public Tiles136 ToTile136()
+        {
+            var temp = new List<int>();
+            for (var x = 0; x < 34; x++)
+            {
+                for (var i = 0; i < x; i++)
+                {
+                    temp.Add(x * 4 + i);
+                }
+            }
+            return new Tiles136(temp);
+        }
+
+        public static TilesSet Parse(string man = "", string pin = "",
+            string sou = "", string honors = "")
+        {
+            return Tiles136.Parse(man, sou, pin, honors).ToTilesSet();
         }
 
         /// <summary>
