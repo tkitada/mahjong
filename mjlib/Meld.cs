@@ -12,7 +12,7 @@ namespace mjlib
         public int Who { get; }
         public int? FromWho { get; }
 
-        public Tiles34 Tiles34 => 
+        public Tiles34 Tiles34 =>
             new Tiles34(Tiles.Take(3)
                              .Select(t => t.Value / 4)
                              .ToList());

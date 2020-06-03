@@ -10,7 +10,7 @@ namespace mjlib.Tiles
 
         public int Count => tiles_.Count;
 
-        public bool IsChi => 
+        public bool IsChi =>
             Count == 3
             && this[0].Value == this[1].Value - 1
             && this[1].Value == this[2].Value - 1;

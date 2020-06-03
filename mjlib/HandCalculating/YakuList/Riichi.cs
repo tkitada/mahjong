@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace mjlib.HandCalculating.YakuList
+﻿namespace mjlib.HandCalculating.YakuList
 {
     internal class Riichi : Yaku
     {
