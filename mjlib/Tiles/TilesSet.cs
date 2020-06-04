@@ -102,6 +102,58 @@ namespace mjlib.Tiles
             return isolatedIndices;
         }
 
+        public bool IsTileStrictlyIsolated(TileKind tile)
+        {
+            var hand = new TilesSet(this.ToList());
+            hand[tile.Value] -= 1;
+            if (hand[tile.Value] < 0)
+            {
+                hand[tile.Value] = 0;
+            }
+            var indices = new List<int>();
+            if (tile.IsHonor)
+            {
+                return hand[tile.Value] == 0;
+            }
+            var simplified = tile.Simplify;
+            if (simplified == 0)
+            {
+                indices = new List<int>
+                    {
+                        tile.Value,tile.Value+1,tile.Value+2
+                    };
+            }
+            else if (simplified == 1)
+            {
+                indices = new List<int>
+                    {
+                       tile.Value-1, tile.Value,tile.Value+1,tile.Value+2
+                    };
+            }
+            else if (simplified == 7)
+            {
+                indices = new List<int>
+                    {
+                       tile.Value-2, tile.Value-1, tile.Value,tile.Value+1
+                    };
+            }
+            else if (simplified == 8)
+            {
+                indices = new List<int>
+                    {
+                       tile.Value-2, tile.Value-1, tile.Value
+                    };
+            }
+            else
+            {
+                indices = new List<int>
+                    {
+                       tile.Value-2, tile.Value-1, tile.Value,tile.Value+1,tile.Value+2
+                    };
+            }
+            return indices.All(x => hand[x] == 0);
+        }
+
         public static TilesSet Parse(string str, bool hasAkaDora = false)
         {
             return Tiles136.Parse(str: str, hasAkaDora: hasAkaDora).ToTilesSet();
@@ -110,12 +162,17 @@ namespace mjlib.Tiles
         public static TilesSet Parse(string man = "", string pin = "",
             string sou = "", string honors = "")
         {
-            return Tiles136.Parse(man, sou, pin, honors).ToTilesSet();
+            return Tiles136.Parse(man: man, pin: pin, sou: sou, honors: honors).ToTilesSet();
         }
 
         public string ToOneLineString()
         {
             return ToTile136().ToOneLineString();
+        }
+
+        public bool ContainsTerminals()
+        {
+            return this.Any(x => TERMINAL_INDICES.Contains(x));
         }
     }
 }
