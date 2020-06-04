@@ -18,6 +18,14 @@ namespace mjlib
         private int numberIsolatedTiles_ = 0;
         private int minShanten_ = 0;
 
+        /// <summary>
+        /// シャンテン数を計算する 0:テンパイ, -1: あがり, -2以下: 無効
+        /// </summary>
+        /// <param name="_tilesSet"></param>
+        /// <param name="openSets"></param>
+        /// <param name="chiitoitsu"></param>
+        /// <param name="kokushi"></param>
+        /// <returns></returns>
         public int CalculateShanten(TilesSet _tilesSet, List<Tiles34> openSets,
             bool chiitoitsu = true, bool kokushi = true)
         {
@@ -102,6 +110,7 @@ namespace mjlib
                 pairs += tiles_[i] != 0 ? 1 : 0;
             }
 
+            //七対子のシャンテン数: 6-対子
             if (chiitoitsu)
             {
                 var retShanten = 6 - completedPairs + pairs < 7 ? 7 - pairs : 0;
@@ -110,6 +119,8 @@ namespace mjlib
                     shanten = retShanten;
                 }
             }
+
+            //国士無双のシャンテン数: 13-么九牌
             if (kokushi)
             {
                 var retShanten = 13 - terminals - completedTerminals != 0 ? 1 : 0;
@@ -121,7 +132,7 @@ namespace mjlib
             return shanten;
         }
 
-        private void RemoveCharacterTiles(int CountOfTiles)
+        private void RemoveCharacterTiles(int countOfTiles)
         {
             var number = 0;
             var isoleted = 0;
@@ -147,7 +158,7 @@ namespace mjlib
                     isoleted |= i << (i - 27);
                 }
             }
-            if (numberJidahai_ != 0 && (CountOfTiles % 3) == 2)
+            if (numberJidahai_ != 0 && (countOfTiles % 3) == 2)
             {
                 numberJidahai_ -= 1;
             }
@@ -176,6 +187,7 @@ namespace mjlib
         {
             if (minShanten_ == AGARI_STATE) return;
 
+            //牌が存在するインデックスまで移動
             while (tiles_[depth] == 0)
             {
                 depth += 1;

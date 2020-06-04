@@ -2,7 +2,7 @@
 
 namespace mjlib
 {
-    internal static class Constants
+    public static class Constants
     {
         public static List<int> TERMINAL_INDICES =>
             new List<int> { 0, 8, 9, 17, 18, 26 };

@@ -52,18 +52,12 @@ namespace mjlib.Tiles
             var temp = new List<int>();
             for (var x = 0; x < 34; x++)
             {
-                for (var i = 0; i < x; i++)
+                for (var i = 0; i < this[x]; i++)
                 {
                     temp.Add(x * 4 + i);
                 }
             }
             return new Tiles136(temp);
-        }
-
-        public static TilesSet Parse(string man = "", string pin = "",
-            string sou = "", string honors = "")
-        {
-            return Tiles136.Parse(man, sou, pin, honors).ToTilesSet();
         }
 
         /// <summary>
@@ -106,6 +100,22 @@ namespace mjlib.Tiles
                 }
             }
             return isolatedIndices;
+        }
+
+        public static TilesSet Parse(string str, bool hasAkaDora = false)
+        {
+            return Tiles136.Parse(str: str, hasAkaDora: hasAkaDora).ToTilesSet();
+        }
+
+        public static TilesSet Parse(string man = "", string pin = "",
+            string sou = "", string honors = "")
+        {
+            return Tiles136.Parse(man, sou, pin, honors).ToTilesSet();
+        }
+
+        public string ToOneLineString()
+        {
+            return ToTile136().ToOneLineString();
         }
     }
 }

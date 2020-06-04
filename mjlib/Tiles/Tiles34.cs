@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace mjlib.Tiles
 {
-    internal class Tiles34 : IEnumerable<TileKind>
+    public class Tiles34 : IEnumerable<TileKind>
     {
         private readonly IList<TileKind> tiles_;
 
@@ -28,6 +28,11 @@ namespace mjlib.Tiles
         {
             get => tiles_[index];
             set => tiles_[index] = value;
+        }
+
+        public Tiles34()
+        {
+            tiles_ = new List<TileKind>();
         }
 
         public Tiles34(IList<TileKind> tiles)

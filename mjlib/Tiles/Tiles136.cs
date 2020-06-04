@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using static mjlib.Constants;
+using static System.Linq.Enumerable;
 
 namespace mjlib.Tiles
 {
@@ -30,16 +31,6 @@ namespace mjlib.Tiles
         public Tiles136(IList<int> tiles)
         {
             tiles_ = tiles.Select(t => new TileID(t)).ToList();
-        }
-
-        public void Add(TileID item)
-        {
-            tiles_.Add(item);
-        }
-
-        public bool Contains(TileID item)
-        {
-            return tiles_.Contains(item);
         }
 
         public IEnumerator<TileID> GetEnumerator()
@@ -90,6 +81,72 @@ namespace mjlib.Tiles
             var honorsStr = Words(honors, -1, "z");
 
             return manStr + pinStr + souStr + honorsStr;
+        }
+
+        public TileID FindTileKindInTiles136(TileKind tileKind)
+        {
+            if (tileKind is null || tileKind.Value > 33)
+            {
+                return null;
+            }
+            var tile = tileKind.Value * 4;
+            var possibleTiles = Range(0, 4).Select(i => tile + i);
+            TileID foundTile = null;
+            foreach (var possibleTile in possibleTiles)
+            {
+                if (this.Select(t => t.Value).Contains(possibleTile))
+                {
+                    foundTile = new TileID(possibleTile);
+                    break;
+                }
+            }
+            return foundTile;
+        }
+
+        public static Tiles136 Parse(string str, bool hasAkaDora = false)
+        {
+            var man = "";
+            var pin = "";
+            var sou = "";
+            var honors = "";
+
+            var splitStart = 0;
+            for (var i = 0; i < str.Length; i++)
+            {
+                if (str[i] == 'm')
+                {
+                    for (var j = splitStart; j < i; j++)
+                    {
+                        man += str[j].ToString();
+                    }
+                    splitStart = i + 1;
+                }
+                if (str[i] == 'p')
+                {
+                    for (var j = splitStart; j < i; j++)
+                    {
+                        pin += str[j].ToString();
+                    }
+                    splitStart = i + 1;
+                }
+                if (str[i] == 's')
+                {
+                    for (var j = splitStart; j < i; j++)
+                    {
+                        sou += str[j].ToString();
+                    }
+                    splitStart = i + 1;
+                }
+                if (str[i] == 'z')
+                {
+                    for (var j = splitStart; j < i; j++)
+                    {
+                        honors += str[j].ToString();
+                    }
+                    splitStart = i + 1;
+                }
+            }
+            return Parse(man: man, pin: pin, sou: sou, honors: honors, hasAkaDora);
         }
 
         public static Tiles136 Parse(string man = "", string pin = "", string sou = "",
