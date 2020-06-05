@@ -10,7 +10,7 @@ namespace mjlibTest
     /// TileTest の概要の説明
     /// </summary>
     [TestClass]
-    public class TileTest
+    public class TilesTest
     {
         [TestMethod]
         public void Tiles136ToOneLineStringTest()

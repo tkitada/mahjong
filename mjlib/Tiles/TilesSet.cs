@@ -60,11 +60,32 @@ namespace mjlib.Tiles
             return new Tiles136(temp);
         }
 
+        public static TilesSet Parse(string str, bool hasAkaDora = false)
+        {
+            return Tiles136.Parse(str: str, hasAkaDora: hasAkaDora).ToTilesSet();
+        }
+
+        public static TilesSet Parse(string man = "", string pin = "",
+            string sou = "", string honors = "")
+        {
+            return Tiles136.Parse(man: man, pin: pin, sou: sou, honors: honors).ToTilesSet();
+        }
+
+        public string ToOneLineString()
+        {
+            return ToTile136().ToOneLineString();
+        }
+
+        public bool ContainsTerminals()
+        {
+            return this.Any(x => TERMINAL_INDICES.Contains(x));
+        }
+
         /// <summary>
         /// 自身及び隣り合った牌が存在しないTileKindのリストを返す
         /// </summary>
         /// <returns></returns>
-        public IList<TileKind> FindIsolatedTileIndices()
+        internal IList<TileKind> FindIsolatedTileIndices()
         {
             var isolatedIndices = new List<TileKind>();
 
@@ -102,7 +123,7 @@ namespace mjlib.Tiles
             return isolatedIndices;
         }
 
-        public bool IsTileStrictlyIsolated(TileKind tile)
+        internal bool IsTileStrictlyIsolated(TileKind tile)
         {
             var hand = new TilesSet(this.ToList());
             hand[tile.Value] -= 1;
@@ -152,27 +173,6 @@ namespace mjlib.Tiles
                     };
             }
             return indices.All(x => hand[x] == 0);
-        }
-
-        public static TilesSet Parse(string str, bool hasAkaDora = false)
-        {
-            return Tiles136.Parse(str: str, hasAkaDora: hasAkaDora).ToTilesSet();
-        }
-
-        public static TilesSet Parse(string man = "", string pin = "",
-            string sou = "", string honors = "")
-        {
-            return Tiles136.Parse(man: man, pin: pin, sou: sou, honors: honors).ToTilesSet();
-        }
-
-        public string ToOneLineString()
-        {
-            return ToTile136().ToOneLineString();
-        }
-
-        public bool ContainsTerminals()
-        {
-            return this.Any(x => TERMINAL_INDICES.Contains(x));
         }
     }
 }

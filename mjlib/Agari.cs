@@ -5,13 +5,13 @@ using static System.Linq.Enumerable;
 
 namespace mjlib
 {
-    internal class Agari
+    public static class Agari
     {
-        public static bool IsAgari(TilesSet tilesSet, List<Tiles34> openSets)
+        public static bool IsAgari(TilesSet tilesSet, IList<Tiles34> openSets = null)
         {
             var tiles = new TilesSet(tilesSet.Select(t => t).ToList());
 
-            if (openSets.Count != 0)
+            if (!(openSets is null) && openSets.Count != 0)
             {
                 var isolatedTiles = tiles.FindIsolatedTileIndices();
                 foreach (var meld in openSets)
