@@ -21,6 +21,13 @@ namespace mjlib
         public static List<int> HONOR_INDICES =>
             new List<int> { EAST, SOUTH, WEST, NORTH, HAKU, HATSU, CHUN };
 
+        public static List<int> YAOCHU_INDICES =>
+            new List<int>
+            {
+                0, 8, 9, 17, 18, 26,
+                EAST, SOUTH, WEST, NORTH, HAKU, HATSU, CHUN
+            };
+
         public const int FIVE_RED_MAN = 16;
         public const int FIVE_RED_PIN = 52;
         public const int FIVE_RED_SOU = 88;

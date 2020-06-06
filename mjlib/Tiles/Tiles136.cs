@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using static mjlib.Constants;
@@ -6,7 +7,7 @@ using static System.Linq.Enumerable;
 
 namespace mjlib.Tiles
 {
-    public class Tiles136 : IEnumerable<TileID>
+    public class Tiles136 : IEnumerable<TileID>,IEquatable<Tiles136>
     {
         private readonly IList<TileID> tiles_;
 
@@ -196,6 +197,32 @@ namespace mjlib.Tiles
             result.AddRange(SplitString(honors, 108, -1));
 
             return new Tiles136(result);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj != null
+                && obj is Tiles136 other
+                && Equals(other);
+        }
+
+        public bool Equals(Tiles136 other)
+        {
+            if (other is null) return false;
+            if (Count != other.Count) return false;
+            for (var i = 0; i < tiles_.Count; i++)
+            {
+                if (!this[i].Equals(other[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

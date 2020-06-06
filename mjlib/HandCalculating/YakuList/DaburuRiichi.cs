@@ -11,7 +11,7 @@
         public override int HanClosed => 2;
         public override bool IsYakuman => false;
 
-        public override bool IsConditionMet(Hand hand, object[] args)
+        public override bool IsConditionMet(HandCalculator hand, object[] args)
         {
             return true;
         }

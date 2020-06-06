@@ -1,8 +1,12 @@
-﻿using static mjlib.Constants;
+﻿using System;
+using static mjlib.Constants;
 
 namespace mjlib.Tiles
 {
-    public class TileKind
+    /// <summary>
+    /// 牌の種類ごとに番号を付けたもの 0～33
+    /// </summary>
+    public class TileKind : IEquatable<TileKind>
     {
         public int Value { get; }
 
@@ -17,6 +21,24 @@ namespace mjlib.Tiles
         public TileKind(int value)
         {
             Value = value;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj != null
+                && obj is TileKind other
+                && Equals(other);
+        }
+
+        public bool Equals(TileKind other)
+        {
+            return other != null 
+                && Value.Equals(other.Value);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

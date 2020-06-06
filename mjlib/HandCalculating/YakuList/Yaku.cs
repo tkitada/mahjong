@@ -11,6 +11,6 @@
         public abstract int HanClosed { get; }
         public abstract bool IsYakuman { get; }
 
-        public abstract bool IsConditionMet(Hand hand, object[] args);
+        public abstract bool IsConditionMet(HandCalculator hand, object[] args);
     }
 }

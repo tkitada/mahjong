@@ -13,7 +13,7 @@ namespace mjlib.HandCalculating.YakuList
         public override int HanClosed => 1;
         public override bool IsYakuman => false;
 
-        public override bool IsConditionMet(Hand hand, object[] args)
+        public override bool IsConditionMet(HandCalculator hand, object[] args)
         {
             throw new NotImplementedException();
         }

@@ -6,7 +6,7 @@ using static mjlib.Constants;
 
 namespace mjlib.Tiles
 {
-    public class TilesSet : IEnumerable<int>
+    public class TilesSet : IEnumerable<int>, IEquatable<TilesSet>
     {
         private readonly IList<int> tiles_;
 
@@ -173,6 +173,32 @@ namespace mjlib.Tiles
                     };
             }
             return indices.All(x => hand[x] == 0);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj != null
+                && obj is TilesSet other
+                && Equals(other);
+        }
+
+        public bool Equals(TilesSet other)
+        {
+            if (other is null) return false;
+            if (Count != other.Count) return false;
+            for (var i = 0; i < tiles_.Count; i++)
+            {
+                if (!this[i].Equals(other[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

@@ -43,7 +43,12 @@
   <ItemGroup>
     <Compile Include="Agari.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="HandCalculating\FuCalculator.cs" />
     <Compile Include="HandCalculating\Hand.cs" />
+    <Compile Include="HandCalculating\HandCalculator.cs" />
+    <Compile Include="HandCalculating\HandConfig.cs" />
+    <Compile Include="HandCalculating\HandResponse.cs" />
+    <Compile Include="HandCalculating\ScoresCalcurator.cs" />
     <Compile Include="HandCalculating\YakuList\Chankan.cs" />
     <Compile Include="HandCalculating\YakuList\DaburuRiichi.cs" />
     <Compile Include="HandCalculating\YakuList\Haitei.cs" />
