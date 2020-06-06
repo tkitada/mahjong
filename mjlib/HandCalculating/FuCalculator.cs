@@ -39,9 +39,9 @@ namespace mjlib.HandCalculating
         public const string CLOSED_TERMINAL_KAN = "closed_terminal_kan";
         public const string OPEN_TERMINAL_KAN = "open_terminal_kan";
 
-        public static (IList<FuDetail>, int) CalculateFu(IList<Tiles34> hand,
-            TileID winTile,
-            Tiles34 winGroup,
+        public static (IList<FuDetail>, int) CalculateFu(IList<TileKinds> hand,
+            TileId winTile,
+            TileKinds winGroup,
             HandConfig config,
             IList<int> valuedTiles = null,
             IList<Meld> melds = null)
@@ -69,9 +69,9 @@ namespace mjlib.HandCalculating
             var ponSets = hand.Where(x => x.IsPon);
 
             var copiedOpenedMelds = melds.Where(x => x.Type == MeldType.CHI)
-                                         .Select(x => x.Tiles34)
+                                         .Select(x => x.TileKinds)
                                          .ToList();
-            var closedChiSets = new List<Tiles34>();
+            var closedChiSets = new List<TileKinds>();
             foreach (var x in hand)
             {
                 if (copiedOpenedMelds.Contains(x))
@@ -132,7 +132,7 @@ namespace mjlib.HandCalculating
 
             foreach (var setItem in ponSets)
             {
-                var openMelds = melds.Where(x => setItem == x.Tiles34)
+                var openMelds = melds.Where(x => setItem == x.TileKinds)
                                     .ToList();
                 var openMeld = openMelds.Count == 0 ? null : openMelds[0];
                 var setWasOpen = !(openMeld is null) && openMeld.Opend;

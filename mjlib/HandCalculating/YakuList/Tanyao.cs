@@ -4,8 +4,8 @@ namespace mjlib.HandCalculating.YakuList
 {
     internal class Tanyao : Yaku
     {
-        public override int YakuID => 11;
-        public override int TenhouID => 8;
+        public override int YakuId => 11;
+        public override int TenhouId => 8;
         public override string Name => "Tanyao";
         public override string Japanese => "断么九";
         public override string English => "All Simples";

@@ -2,8 +2,8 @@
 {
     internal class Renhou : Yaku
     {
-        public override int YakuID => 9;
-        public override int TenhouID => 36;
+        public override int YakuId => 9;
+        public override int TenhouId => 36;
         public override string Name => "Renhou";
         public override string Japanese => "人和";
         public override string English => "Hand Of Man";

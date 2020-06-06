@@ -10,7 +10,7 @@ namespace mjlib
     {
         public static int AGARI_STATE = -1;
 
-        private static TilesSet tiles_ = new TilesSet();
+        private static Tiles34 tiles_ = new Tiles34();
         private static int numberMelds_ = 0;
         private static int numberTatsu_ = 0;
         private static int numberPairs_ = 0;
@@ -22,17 +22,17 @@ namespace mjlib
         /// <summary>
         /// シャンテン数を計算する 0:テンパイ, -1: あがり
         /// </summary>
-        /// <param name="_tilesSet"></param>
+        /// <param name="_tiles34"></param>
         /// <param name="openSets"></param>
         /// <param name="chiitoitsu"></param>
         /// <param name="kokushi"></param>
         /// <returns></returns>
-        public static int CalculateShanten(TilesSet _tilesSet, IList<Tiles34> openSets = null,
+        public static int CalculateShanten(Tiles34 _tiles34, IList<TileKinds> openSets = null,
             bool chiitoitsu = true, bool kokushi = true)
         {
-            var tilesSet = new TilesSet(_tilesSet.Select(t => t).ToList());
-            Init(tilesSet);
-            var countOfTiles = tilesSet.Sum();
+            var tiles34 = new Tiles34(_tiles34.Select(t => t));
+            Init(tiles34);
+            var countOfTiles = tiles34.Sum();
             if (countOfTiles > 14) throw new ArgumentException("牌の数が14個より多いです。", nameof(countOfTiles));
 
             if (!(openSets is null || openSets.Count == 0))
@@ -46,10 +46,10 @@ namespace mjlib
                     var isolatedTile = isolatedTiles[lastIndex];
                     isolatedTiles.RemoveAt(lastIndex);
 
-                    tilesSet[meld[0].Value] -= 1;
-                    tilesSet[meld[1].Value] -= 1;
-                    tilesSet[meld[2].Value] -= 1;
-                    tilesSet[isolatedTile.Value] = 3;
+                    tiles34[meld[0].Value] -= 1;
+                    tiles34[meld[1].Value] -= 1;
+                    tiles34[meld[2].Value] -= 1;
+                    tiles34[isolatedTile.Value] = 3;
                 }
             }
 
@@ -65,7 +65,7 @@ namespace mjlib
             return minShanten_;
         }
 
-        private static void Init(TilesSet tiles)
+        private static void Init(Tiles34 tiles)
         {
             tiles_ = tiles;
             numberMelds_ = 0;
@@ -80,8 +80,11 @@ namespace mjlib
         private static int ScanChiitoitsuAndKokushi(bool chiitoitsu, bool kokushi)
         {
             var shanten = minShanten_;
-            var yaochuIndices = new List<int> { 0, 8, 9, 17, 18,
-                26, 27, 28, 29, 30, 31, 32, 33 };
+            var yaochuIndices = new List<int>
+            {
+                0, 8, 9, 17, 18,
+                26, 27, 28, 29, 30, 31, 32, 33
+            };
 
             var completedTerminals = 0;
             foreach (var i in yaochuIndices)
@@ -95,9 +98,12 @@ namespace mjlib
                 terminals += tiles_[i] != 0 ? 1 : 0;
             }
 
-            var chuchanIndices = new List<int> { 1, 2, 3, 4, 5, 6, 7,
+            var chuchanIndices = new List<int>
+            {
+                1, 2, 3, 4, 5, 6, 7,
                 10, 11, 12, 13, 14, 15, 16,
-                19, 20, 21, 22, 23, 24, 25 };
+                19, 20, 21, 22, 23, 24, 25
+            };
 
             var completedPairs = completedTerminals;
             foreach (var i in chuchanIndices)

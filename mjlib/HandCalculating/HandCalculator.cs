@@ -5,8 +5,8 @@ namespace mjlib.HandCalculating
 {
     internal class HandCalculator
     {
-        public HandResponse EstimateHandValue(Tiles136 tiles, TileID wintile, 
-            IList<Meld> melds = null, Tiles136 doraIndicators = null, HandConfig config = null)
+        public HandResponse EstimateHandValue(TileIds tiles, TileId wintile, 
+            IList<Meld> melds = null, TileIds doraIndicators = null, HandConfig config = null)
         {
         }
     }

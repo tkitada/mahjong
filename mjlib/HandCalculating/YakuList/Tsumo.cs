@@ -2,8 +2,8 @@
 {
     internal class Tsumo : Yaku
     {
-        public override int YakuID => 0;
-        public override int TenhouID => 0;
+        public override int YakuId => 0;
+        public override int TenhouId => 0;
         public override string Name => "Menzen Tsumo";
         public override string Japanese => "門前清自摸和";
         public override string English => "Self Draw";

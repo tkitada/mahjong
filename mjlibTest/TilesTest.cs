@@ -15,7 +15,7 @@ namespace mjlibTest
         [TestMethod]
         public void Tiles136ToOneLineStringTest()
         {
-            var tiles = new Tiles136(new List<int>
+            var tiles = new TileIds(new List<int>
             {
                 0, 1, 34, 35, 36, 37, 70, 71, 72, 73, 106, 107, 108, 109, 133, 134
             });
@@ -28,7 +28,7 @@ namespace mjlibTest
         [TestMethod]
         public void Tiles136ToOneLineStringWithAkaDoraTest()
         {
-            var tiles = new Tiles136(new List<int>
+            var tiles = new TileIds(new List<int>
             {
                 1, 16, 13, 46, 5, 13, 24, 34, 134, 124
             });
@@ -45,7 +45,7 @@ namespace mjlibTest
         [TestMethod]
         public void Tiles136ToTilesSet()
         {
-            var tiles = new Tiles136(new List<int>
+            var tiles = new TileIds(new List<int>
             {
                 0, 34, 35, 36, 37, 70, 71, 72, 73, 106, 107, 108, 109, 134
             });
@@ -65,7 +65,7 @@ namespace mjlibTest
         [TestMethod]
         public void TilesSetToTiles136Test()
         {
-            var expected = new Tiles136(new List<int>
+            var expected = new TileIds(new List<int>
             {
                 0, 32, 33, 36, 37, 68, 69, 72, 73, 104, 105, 108, 109, 132
             });
@@ -80,11 +80,11 @@ namespace mjlibTest
         [TestMethod]
         public void StringToTiles136()
         {
-            var expected = new Tiles136(new List<int>
+            var expected = new TileIds(new List<int>
             {
                 0, 32, 36, 68, 72, 104, 108, 112, 116, 120, 124, 128, 132
             });
-            var actual = Tiles136.Parse(man: "19", pin: "19", sou: "19", honors: "1234567");
+            var actual = TileIds.Parse(man: "19", pin: "19", sou: "19", honors: "1234567");
 
             for (var i = 0; i < expected.Count; i++)
             {
@@ -95,19 +95,19 @@ namespace mjlibTest
         [TestMethod]
         public void FindTileKindInTiles136()
         {
-            var actual = new Tiles136(new List<int>
+            var actual = new TileIds(new List<int>
             {
                 3,4,5,6
             }).FindTileKindInTiles136(new TileKind(0));
             Assert.AreEqual(3, actual.Value);
 
-            actual = new Tiles136(new List<int>
+            actual = new TileIds(new List<int>
             {
                 3, 4, 134, 135
             }).FindTileKindInTiles136(new TileKind(33));
             Assert.AreEqual(134, actual.Value);
 
-            actual = new Tiles136(new List<int>
+            actual = new TileIds(new List<int>
             {
                 3, 4, 134, 135
             }).FindTileKindInTiles136(new TileKind(20));
@@ -117,10 +117,10 @@ namespace mjlibTest
         [TestMethod]
         public void StringToTiles136WithAkaDora()
         {
-            var tiles = Tiles136.Parse(man: "2244", pin: "333r67", sou: "44", hasAkaDora: true);
+            var tiles = TileIds.Parse(man: "2244", pin: "333r67", sou: "44", hasAkaDora: true);
             Assert.IsTrue(tiles.Select(t => t.Value).Contains(FIVE_RED_PIN));
 
-            tiles = Tiles136.Parse(man: "2244", pin: "333067", sou: "44", hasAkaDora: true);
+            tiles = TileIds.Parse(man: "2244", pin: "333067", sou: "44", hasAkaDora: true);
             Assert.IsTrue(tiles.Select(t => t.Value).Contains(FIVE_RED_PIN));
         }
 
@@ -128,7 +128,7 @@ namespace mjlibTest
         public void OneLineStringToTiles136()
         {
             var initialString = "789m456p555s11222z";
-            var tiles = Tiles136.Parse(str: initialString);
+            var tiles = TileIds.Parse(str: initialString);
             Assert.AreEqual(14, tiles.Count);
 
             var newString = tiles.ToOneLineString();
@@ -139,7 +139,7 @@ namespace mjlibTest
         public void OneLineStringToTilesSet()
         {
             var initialString = "789m456p555s11222z";
-            var tiles = TilesSet.Parse(str: initialString);
+            var tiles = Tiles34.Parse(str: initialString);
             Assert.AreEqual(34, tiles.Count);
 
             var newString = tiles.ToOneLineString();

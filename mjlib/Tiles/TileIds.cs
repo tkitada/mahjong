@@ -7,34 +7,34 @@ using static System.Linq.Enumerable;
 
 namespace mjlib.Tiles
 {
-    public class Tiles136 : IEnumerable<TileID>,IEquatable<Tiles136>
+    public class TileIds : IEnumerable<TileId>, IEquatable<TileIds>
     {
-        private readonly IList<TileID> tiles_;
+        private readonly IList<TileId> tiles_;
 
         public int Count => tiles_.Count;
 
-        public TileID this[int index]
+        public TileId this[int index]
         {
             get => tiles_[index];
             set => tiles_[index] = value;
         }
 
-        public Tiles136()
+        public TileIds()
         {
-            tiles_ = new List<TileID>();
+            tiles_ = new List<TileId>();
         }
 
-        public Tiles136(IList<TileID> tiles)
+        public TileIds(IEnumerable<TileId> tiles)
         {
-            tiles_ = tiles;
+            tiles_ = tiles.ToList();
         }
 
-        public Tiles136(IList<int> tiles)
+        public TileIds(IEnumerable<int> tiles)
         {
-            tiles_ = tiles.Select(t => new TileID(t)).ToList();
+            tiles_ = tiles.Select(t => new TileId(t)).ToList();
         }
 
-        public IEnumerator<TileID> GetEnumerator()
+        public IEnumerator<TileId> GetEnumerator()
         {
             return tiles_.GetEnumerator();
         }
@@ -44,9 +44,9 @@ namespace mjlib.Tiles
             return ((IEnumerable)tiles_).GetEnumerator();
         }
 
-        public TilesSet ToTilesSet()
+        public Tiles34 ToTilesSet()
         {
-            var result = new TilesSet();
+            var result = new Tiles34();
             foreach (var tile in this)
             {
                 result[tile.Value / 4] += 1;
@@ -84,7 +84,7 @@ namespace mjlib.Tiles
             return manStr + pinStr + souStr + honorsStr;
         }
 
-        public TileID FindTileKindInTiles136(TileKind tileKind)
+        public TileId FindTileKindInTiles136(TileKind tileKind)
         {
             if (tileKind is null || tileKind.Value > 33)
             {
@@ -92,19 +92,19 @@ namespace mjlib.Tiles
             }
             var tile = tileKind.Value * 4;
             var possibleTiles = Range(0, 4).Select(i => tile + i);
-            TileID foundTile = null;
+            TileId foundTile = null;
             foreach (var possibleTile in possibleTiles)
             {
                 if (this.Select(t => t.Value).Contains(possibleTile))
                 {
-                    foundTile = new TileID(possibleTile);
+                    foundTile = new TileId(possibleTile);
                     break;
                 }
             }
             return foundTile;
         }
 
-        public static Tiles136 Parse(string str, bool hasAkaDora = false)
+        public static TileIds Parse(string str, bool hasAkaDora = false)
         {
             var man = "";
             var pin = "";
@@ -150,7 +150,7 @@ namespace mjlib.Tiles
             return Parse(man: man, pin: pin, sou: sou, honors: honors, hasAkaDora);
         }
 
-        public static Tiles136 Parse(string man = "", string pin = "", string sou = "",
+        public static TileIds Parse(string man = "", string pin = "", string sou = "",
             string honors = "", bool hasAkaDora = false)
         {
             IList<int> SplitString(string str, int offset, int red)
@@ -196,17 +196,17 @@ namespace mjlib.Tiles
             result.AddRange(SplitString(sou, 72, FIVE_RED_SOU));
             result.AddRange(SplitString(honors, 108, -1));
 
-            return new Tiles136(result);
+            return new TileIds(result);
         }
 
         public override bool Equals(object obj)
         {
             return obj != null
-                && obj is Tiles136 other
+                && obj is TileIds other
                 && Equals(other);
         }
 
-        public bool Equals(Tiles136 other)
+        public bool Equals(TileIds other)
         {
             if (other is null) return false;
             if (Count != other.Count) return false;

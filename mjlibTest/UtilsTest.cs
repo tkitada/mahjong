@@ -11,7 +11,7 @@ namespace mjlibTest
         [TestMethod]
         public void FindIsolatedTilesTest()
         {
-            var hand = TilesSet.Parse(man: "25", pin: "15678", sou: "1369", honors: "124");
+            var hand = Tiles34.Parse(man: "25", pin: "15678", sou: "1369", honors: "124");
             var isoTiles = hand.FindIsolatedTileIndices();
 
             Assert.IsFalse(isoTiles.Select(t => t.Value).Contains(StringToTileKind(man: "1").Value));
@@ -53,7 +53,7 @@ namespace mjlibTest
         [TestMethod]
         public void IsStrictlyIsolatedTilesTest()
         {
-            var hand = TilesSet.Parse(man: "25", pin: "15678", sou: "1399", honors: "1224");
+            var hand = Tiles34.Parse(man: "25", pin: "15678", sou: "1399", honors: "1224");
 
             Assert.IsFalse(hand.IsTileStrictlyIsolated(StringToTileKind(man: "1")));
             Assert.IsTrue(hand.IsTileStrictlyIsolated(StringToTileKind(man: "2")));

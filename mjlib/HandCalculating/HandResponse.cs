@@ -9,6 +9,6 @@ namespace mjlib.HandCalculating
         public int Fu { get; }
         public IList<Yaku> YakuList { get; }
         public string Error { get; }
-        public IList<FuDetail> FuDetails { get; }
+        public IList<FuDetail> FuDetailSet { get; }
     }
 }

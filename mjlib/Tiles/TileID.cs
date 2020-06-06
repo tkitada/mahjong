@@ -5,11 +5,11 @@ namespace mjlib.Tiles
     /// <summary>
     /// 牌一枚ずつに番号をつけたもの 0～135
     /// </summary>
-    public class TileID : IEquatable<TileID>
+    public class TileId : IEquatable<TileId>
     {
         public int Value { get; }
 
-        public TileID(int value)
+        public TileId(int value)
         {
             Value = value;
         }
@@ -19,14 +19,20 @@ namespace mjlib.Tiles
             return new TileKind(Value / 4);
         }
 
+        public static TileId Parse(string man = "", string pin = "", string sou = "",
+            string honors = "", bool hasAkaDora = false)
+        {
+            return TileIds.Parse(man: man, pin: pin, sou: sou, honors: honors, hasAkaDora: hasAkaDora)[0];
+        }
+
         public override bool Equals(object obj)
         {
             return obj != null
-                && obj is TileID other
+                && obj is TileId other
                 && Equals(other);
         }
 
-        public bool Equals(TileID other)
+        public bool Equals(TileId other)
         {
             return other != null
                 && Value.Equals(other.Value);

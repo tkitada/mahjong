@@ -2,8 +2,8 @@
 {
     internal class Riichi : Yaku
     {
-        public override int YakuID => 1;
-        public override int TenhouID => 1;
+        public override int YakuId => 1;
+        public override int TenhouId => 1;
         public override string Name => "Riichi";
         public override string Japanese => "立直";
         public override string English => "Riichi";

@@ -7,9 +7,9 @@ namespace mjlib
 {
     public static class Agari
     {
-        public static bool IsAgari(TilesSet tilesSet, IList<Tiles34> openSets = null)
+        public static bool IsAgari(Tiles34 tiles34, IList<TileKinds> openSets = null)
         {
-            var tiles = new TilesSet(tilesSet.Select(t => t).ToList());
+            var tiles = new Tiles34(tiles34.Select(t => t));
 
             if (!(openSets is null) && openSets.Count != 0)
             {
@@ -131,7 +131,7 @@ namespace mjlib
 
         //Tilesの各intをバイナリにしたものが右から3桁ずつ並ぶ
         //[0,1,2,3,4]=>0b100_011_010_001_000
-        private static int ToMeld(TilesSet tiles, int d)
+        private static int ToMeld(Tiles34 tiles, int d)
         {
             var result = 0;
             for (var i = 0; i < 9; i++)

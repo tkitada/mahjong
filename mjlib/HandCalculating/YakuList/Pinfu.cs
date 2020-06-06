@@ -2,8 +2,8 @@
 {
     internal class Pinfu : Yaku
     {
-        public override int YakuID => 10;
-        public override int TenhouID => 7;
+        public override int YakuId => 10;
+        public override int TenhouId => 7;
         public override string Name => "Pinfu";
         public override string Japanese => "平和";
         public override string English => "All Sequences";
