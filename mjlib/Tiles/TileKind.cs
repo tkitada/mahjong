@@ -6,7 +6,7 @@ namespace mjlib.Tiles
     /// <summary>
     /// 牌の種類ごとに番号を付けたもの 0～33
     /// </summary>
-    public class TileKind : IEquatable<TileKind>
+    public class TileKind : IEquatable<TileKind>, IComparable<TileKind>
     {
         public int Value { get; }
 
@@ -32,7 +32,7 @@ namespace mjlib.Tiles
 
         public bool Equals(TileKind other)
         {
-            return other != null 
+            return other != null
                 && Value.Equals(other.Value);
         }
 
@@ -40,5 +40,8 @@ namespace mjlib.Tiles
         {
             return base.GetHashCode();
         }
+
+        public int CompareTo(TileKind other) => 
+            Value > other.Value ? 1 : Value < other.Value ? -1 : 0;
     }
 }

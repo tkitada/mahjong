@@ -50,7 +50,7 @@ namespace mjlibTest
                 0, 34, 35, 36, 37, 70, 71, 72, 73, 106, 107, 108, 109, 134
             });
 
-            var actual = tiles.ToTilesSet();
+            var actual = tiles.ToTiles34();
             Assert.AreEqual(1, actual[0]);
             Assert.AreEqual(2, actual[8]);
             Assert.AreEqual(2, actual[9]);
@@ -69,8 +69,8 @@ namespace mjlibTest
             {
                 0, 32, 33, 36, 37, 68, 69, 72, 73, 104, 105, 108, 109, 132
             });
-            var t = expected.ToTilesSet();
-            var actual = t.ToTile136();
+            var t = expected.ToTiles34();
+            var actual = t.ToTileIds();
             for (var i = 0; i < expected.Count; i++)
             {
                 Assert.AreEqual(expected[i].Value, actual[i].Value);
@@ -98,19 +98,19 @@ namespace mjlibTest
             var actual = new TileIds(new List<int>
             {
                 3,4,5,6
-            }).FindTileKindInTiles136(new TileKind(0));
+            }).FindTileKind(new TileKind(0));
             Assert.AreEqual(3, actual.Value);
 
             actual = new TileIds(new List<int>
             {
                 3, 4, 134, 135
-            }).FindTileKindInTiles136(new TileKind(33));
+            }).FindTileKind(new TileKind(33));
             Assert.AreEqual(134, actual.Value);
 
             actual = new TileIds(new List<int>
             {
                 3, 4, 134, 135
-            }).FindTileKindInTiles136(new TileKind(20));
+            }).FindTileKind(new TileKind(20));
             Assert.AreEqual(null, actual);
         }
 

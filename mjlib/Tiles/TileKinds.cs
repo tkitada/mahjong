@@ -6,7 +6,7 @@ using static mjlib.Constants;
 
 namespace mjlib.Tiles
 {
-    public class TileKinds : IEnumerable<TileKind>, IEquatable<TileKinds>
+    public class TileKinds : IEnumerable<TileKind>, IEquatable<TileKinds>, IComparable<TileKinds>
     {
         private readonly IList<TileKind> tiles_;
 
@@ -24,6 +24,8 @@ namespace mjlib.Tiles
 
         public bool IsPair =>
             Count == 2;
+
+        public bool IsReadOnly => tiles_.IsReadOnly;
 
         public TileKind this[int index]
         {
@@ -61,6 +63,11 @@ namespace mjlib.Tiles
             return tiles_.IndexOf(item);
         }
 
+        public void RemoveAt(int index)
+        {
+            tiles_.RemoveAt(index);
+        }
+
         public IEnumerator<TileKind> GetEnumerator()
         {
             return tiles_.GetEnumerator();
@@ -69,6 +76,11 @@ namespace mjlib.Tiles
         IEnumerator IEnumerable.GetEnumerator()
         {
             return ((IEnumerable)tiles_).GetEnumerator();
+        }
+
+        public bool ContainsTerminal()
+        {
+            return this.Any(x => TERMINAL_INDICES.Contains(x.Value));
         }
 
         public override bool Equals(object obj)
@@ -96,13 +108,16 @@ namespace mjlib.Tiles
         {
             return base.GetHashCode();
         }
-        public bool ContainsTerminal()
-        {
-            return this.Any(x => TERMINAL_INDICES.Contains(x.Value));
-        }
-        internal TileKinds FindPairs(int firstIndex, int secondIndex)
-        {
 
+        public int CompareTo(TileKinds other)
+        {
+            var min = Math.Min(Count, other.Count);
+            for (var i = 0; i < min; i++)
+            {
+                if (this[i].CompareTo(other[i]) > 0) return 1;
+                if (this[i].CompareTo(other[i]) < 0) return -1;
+            }
+            return Count > other.Count ? 1 : Count < other.Count ? -1 : 0;
         }
     }
 }

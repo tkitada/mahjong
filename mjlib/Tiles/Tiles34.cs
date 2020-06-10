@@ -6,6 +6,7 @@ using static mjlib.Constants;
 
 namespace mjlib.Tiles
 {
+    //牌の種類id0~33をインデックスとしてそれぞれの牌の個数を値として持つ
     public class Tiles34 : IEnumerable<int>, IEquatable<Tiles34>
     {
         private readonly IList<int> tiles_;
@@ -47,7 +48,33 @@ namespace mjlib.Tiles
             return ((IEnumerable)tiles_).GetEnumerator();
         }
 
-        public TileIds ToTile136()
+        public override bool Equals(object obj)
+        {
+            return obj != null
+                && obj is Tiles34 other
+                && Equals(other);
+        }
+
+        public bool Equals(Tiles34 other)
+        {
+            if (other is null) return false;
+            if (Count != other.Count) return false;
+            for (var i = 0; i < tiles_.Count; i++)
+            {
+                if (!this[i].Equals(other[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public TileIds ToTileIds()
         {
             var temp = new List<int>();
             for (var x = 0; x < 34; x++)
@@ -62,18 +89,18 @@ namespace mjlib.Tiles
 
         public static Tiles34 Parse(string str, bool hasAkaDora = false)
         {
-            return TileIds.Parse(str: str, hasAkaDora: hasAkaDora).ToTilesSet();
+            return TileIds.Parse(str: str, hasAkaDora: hasAkaDora).ToTiles34();
         }
 
         public static Tiles34 Parse(string man = "", string pin = "",
             string sou = "", string honors = "")
         {
-            return TileIds.Parse(man: man, pin: pin, sou: sou, honors: honors).ToTilesSet();
+            return TileIds.Parse(man: man, pin: pin, sou: sou, honors: honors).ToTiles34();
         }
 
         public string ToOneLineString()
         {
-            return ToTile136().ToOneLineString();
+            return ToTileIds().ToOneLineString();
         }
 
         public bool ContainsTerminals()
@@ -173,32 +200,6 @@ namespace mjlib.Tiles
                     };
             }
             return indices.All(x => hand[x] == 0);
-        }
-
-        public override bool Equals(object obj)
-        {
-            return obj != null
-                && obj is Tiles34 other
-                && Equals(other);
-        }
-
-        public bool Equals(Tiles34 other)
-        {
-            if (other is null) return false;
-            if (Count != other.Count) return false;
-            for (var i = 0; i < tiles_.Count; i++)
-            {
-                if (!this[i].Equals(other[i]))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
         }
     }
 }

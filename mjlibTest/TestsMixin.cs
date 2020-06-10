@@ -1,4 +1,5 @@
-﻿using mjlib.Tiles;
+﻿using mjlib;
+using mjlib.Tiles;
 using System.Linq;
 
 namespace mjlibTest
@@ -15,6 +16,17 @@ namespace mjlibTest
         {
             var item = TileIds.Parse(man: man, pin: pin, sou: sou, honors: honors);
             return new TileKind(item[0].Value / 4);
+        }
+
+        public static Meld MakeMeld(MeldType meldType,
+            string man = "",
+            string pin = "",
+            string sou = "",
+            string honors = "",
+            bool isOpen = true)
+        {
+            var tiles = TileIds.Parse(man: man, pin: pin, sou: sou, honors: honors);
+            return new Meld(meldType, tiles, isOpen, tiles[0], who: 0);
         }
     }
 }

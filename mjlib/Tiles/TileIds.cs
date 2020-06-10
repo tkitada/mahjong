@@ -44,7 +44,12 @@ namespace mjlib.Tiles
             return ((IEnumerable)tiles_).GetEnumerator();
         }
 
-        public Tiles34 ToTilesSet()
+        public TileKinds ToTileKinds()
+        {
+            return new TileKinds(this.Select(x => x.Value / 4));
+        }
+
+        public Tiles34 ToTiles34()
         {
             var result = new Tiles34();
             foreach (var tile in this)
@@ -73,9 +78,7 @@ namespace mjlib.Tiles
                     : string.Join("",
                         suits.Select(t => t == redFive && printAkaDora
                             ? "0"
-                            : (t / 4 + 1).ToString()
-                        )
-                    ) + suffix;
+                            : (t / 4 + 1).ToString())) + suffix;
             var manStr = Words(man, FIVE_RED_MAN, "m");
             var pinStr = Words(pin, FIVE_RED_PIN, "p");
             var souStr = Words(sou, FIVE_RED_SOU, "s");
@@ -84,7 +87,7 @@ namespace mjlib.Tiles
             return manStr + pinStr + souStr + honorsStr;
         }
 
-        public TileId FindTileKindInTiles136(TileKind tileKind)
+        public TileId FindTileKind(TileKind tileKind)
         {
             if (tileKind is null || tileKind.Value > 33)
             {

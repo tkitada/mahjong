@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="AgariTest.cs" />
     <Compile Include="CalculatingTest\FuCalculationTest.cs" />
+    <Compile Include="CalculatingTest\HandDividerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShantenTest.cs" />
     <Compile Include="TestsMixin.cs" />
