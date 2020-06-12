@@ -1,4 +1,6 @@
-﻿using System;
+﻿using mjlib.Tiles;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace mjlib.HandCalculating.YakuList
 {
@@ -13,9 +15,10 @@ namespace mjlib.HandCalculating.YakuList
         public override int HanClosed => 1;
         public override bool IsYakuman => false;
 
-        public override bool IsConditionMet(HandCalculator hand, object[] args)
+        public override bool IsConditionMet(IList<TileKinds> hand, object[] args = null)
         {
-            throw new NotImplementedException();
+            var indices = hand.Aggregate((x, y) => x.AddRange(y));
+            return indices.All(x => x.IsChuchan);
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿namespace mjlib.HandCalculating.YakuList
+﻿using mjlib.Tiles;
+using System.Collections.Generic;
+
+namespace mjlib.HandCalculating.YakuList
 {
     internal class Pinfu : Yaku
     {
@@ -11,7 +14,7 @@
         public override int HanClosed => 1;
         public override bool IsYakuman => false;
 
-        public override bool IsConditionMet(HandCalculator hand, object[] args)
+        public override bool IsConditionMet(IList<TileKinds> hand, object[] args = null)
         {
             return true;
         }

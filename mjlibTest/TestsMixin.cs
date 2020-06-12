@@ -1,5 +1,7 @@
 ﻿using mjlib;
+using mjlib.HandCalculating;
 using mjlib.Tiles;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace mjlibTest
@@ -27,6 +29,11 @@ namespace mjlibTest
         {
             var tiles = TileIds.Parse(man: man, pin: pin, sou: sou, honors: honors);
             return new Meld(meldType, tiles, isOpen, tiles[0], who: 0);
+        }
+
+        public static IList<TileKinds> Hand(Tiles34 tiles, int handIndex = 0)
+        {
+            return HandDivider.DivideHand(tiles)[handIndex];
         }
     }
 }

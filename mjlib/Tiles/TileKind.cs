@@ -15,6 +15,8 @@ namespace mjlib.Tiles
         public bool IsSou => 17 < Value && Value <= 26;
         public bool IsHonor => Value >= 27;
         public bool IsTerminal => TERMINAL_INDICES.Contains(Value);
+        public bool IsYaochu => IsHonor || IsTerminal;
+        public bool IsChuchan => !IsYaochu;
 
         public int Simplify => Value - 9 * (Value / 9);
 
@@ -41,7 +43,9 @@ namespace mjlib.Tiles
             return base.GetHashCode();
         }
 
-        public int CompareTo(TileKind other) => 
-            Value > other.Value ? 1 : Value < other.Value ? -1 : 0;
+        public int CompareTo(TileKind other)
+        {
+            return Value > other.Value ? 1 : Value < other.Value ? -1 : 0;
+        }
     }
 }

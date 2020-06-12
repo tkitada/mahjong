@@ -1,4 +1,7 @@
-﻿namespace mjlib.HandCalculating
+﻿using mjlib.Tiles;
+using System.Collections.Generic;
+
+namespace mjlib.HandCalculating
 {
     internal abstract class Yaku
     {
@@ -11,6 +14,6 @@
         public abstract int HanClosed { get; }
         public abstract bool IsYakuman { get; }
 
-        public abstract bool IsConditionMet(HandCalculator hand, object[] args);
+        public abstract bool IsConditionMet(IList<TileKinds> hand, object[] args = null);
     }
 }

@@ -33,7 +33,7 @@ namespace mjlib.HandCalculating
                 var localTiles34 = new Tiles34(tiles34.Select(x => x));
 
                 //すでに鳴いている牌は形が決まっているので外す
-                foreach(var openItem in openTileIndices)
+                foreach (var openItem in openTileIndices)
                 {
                     localTiles34[openItem.Value] -= 1;
                 }
@@ -237,9 +237,9 @@ namespace mjlib.HandCalculating
                     countOfTiles = indices.Where(x => item[0].Equals(x))
                                           .Count() / 3;
                     countOfSets = validCombinationsCopy.Where(x => item[0].Equals(x[0])
-                                                            && item[1].Equals(x[1])
-                                                            && item[2].Equals(x[2]))
-                                                   .Count();
+                                                                && item[1].Equals(x[1])
+                                                                && item[2].Equals(x[2]))
+                                                       .Count();
                     if (countOfSets > countOfTiles)
                     {
                         validCombinationsCopy.Remove(item);
@@ -256,9 +256,9 @@ namespace mjlib.HandCalculating
                 while (countOfSets > countOfPossibleSets)
                 {
                     countOfSets = validCombinationsCopy.Where(x => item[0].Equals(x[0])
-                                                            && item[1].Equals(x[1])
-                                                            && item[2].Equals(x[2]))
-                                                   .Count();
+                                                                && item[1].Equals(x[1])
+                                                                && item[2].Equals(x[2]))
+                                                       .Count();
                     if (countOfSets > countOfPossibleSets)
                     {
                         validCombinationsCopy.Remove(item);
@@ -300,6 +300,12 @@ namespace mjlib.HandCalculating
             return combinationsResults;
         }
 
+        /// <summary>
+        /// 各TileKindsが取りうる順列を列挙します。
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
         public static IList<TileKinds> Permutations(this TileKinds source, int count)
         {
             var result = new List<TileKinds>();
@@ -323,11 +329,6 @@ namespace mjlib.HandCalculating
             }
         }
 
-        private static bool IsDuplicated<T>(this IEnumerable<T> source)
-        {
-            return source.GroupBy(x => x).Any(x => x.Count() != 1);
-        }
-
         private static bool Contains_<T>(this IEnumerable<T> source, T item) where T : IEnumerable<TileKinds>
         {
             return source.Any(x =>
@@ -343,6 +344,11 @@ namespace mjlib.HandCalculating
             });
         }
 
+        /// <summary>
+        /// 各色の牌姿の直積を求めます。
+        /// </summary>
+        /// <param name="arrays"></param>
+        /// <returns></returns>
         private static IEnumerable<IEnumerable<IEnumerable<TileKinds>>> Product(IList<IEnumerable<IEnumerable<TileKinds>>> arrays)
         {
             var countOfArrays = arrays.Count;

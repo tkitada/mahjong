@@ -25,8 +25,6 @@ namespace mjlib.Tiles
         public bool IsPair =>
             Count == 2;
 
-        public bool IsReadOnly => tiles_.IsReadOnly;
-
         public TileKind this[int index]
         {
             get => tiles_[index];
@@ -51,6 +49,13 @@ namespace mjlib.Tiles
         public void Add(TileKind item)
         {
             tiles_.Add(item);
+        }
+
+        public TileKinds AddRange(TileKinds collection)
+        {
+            var t = tiles_.ToList();
+            t.AddRange(collection);
+            return new TileKinds(t);
         }
 
         public bool Contains(TileKind item)

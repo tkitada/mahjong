@@ -3,15 +3,22 @@ using System.Collections.Generic;
 
 namespace mjlib.HandCalculating.YakuList
 {
-    internal class Chankan : Yaku
+    internal class YakuhaiOfRound : Yaku
     {
-        public override int YakuId => 3;
-        public override int TenhouId => 3;
-        public override string Name => "Chankan";
-        public override string Japanese => "搶槓";
-        public override string English => "Robbing A Kan";
+        public override int YakuId => 21;
+
+        public override int TenhouId => 11;
+
+        public override string Name => "Yakuhai (wind of round)";
+
+        public override string Japanese => "場風";
+
+        public override string English => "Value Tiles (Round)";
+
         public override int HanOpen => 1;
+
         public override int HanClosed => 1;
+
         public override bool IsYakuman => false;
 
         public override bool IsConditionMet(IList<TileKinds> hand, object[] args = null)

@@ -1,11 +1,12 @@
 ﻿using mjlib.Tiles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using static mjlib.Constants;
 
 namespace mjlib.HandCalculating
 {
-    internal class FuDetail
+    internal class FuDetail : IEquatable<FuDetail>
     {
         public int Fu { get; }
         public string Reason { get; }
@@ -14,6 +15,23 @@ namespace mjlib.HandCalculating
         {
             Fu = fu;
             Reason = reason;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj != null
+                && obj is FuDetail other
+                && Equals(other);
+        }
+
+        public bool Equals(FuDetail other)
+        {
+            return !(other is null) && Fu == other.Fu && Reason == other.Reason;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 
@@ -74,7 +92,7 @@ namespace mjlib.HandCalculating
             var closedChiSets = new List<TileKinds>();
             foreach (var x in hand)
             {
-                if (copiedOpenedMelds.Contains(x))
+                if (!copiedOpenedMelds.Contains(x))
                 {
                     closedChiSets.Add(x);
                 }
@@ -132,7 +150,7 @@ namespace mjlib.HandCalculating
 
             foreach (var setItem in ponSets)
             {
-                var openMelds = melds.Where(x => setItem == x.TileKinds)
+                var openMelds = melds.Where(x => setItem.Equals(x.TileKinds))
                                     .ToList();
                 var openMeld = openMelds.Count == 0 ? null : openMelds[0];
                 var setWasOpen = !(openMeld is null) && openMeld.Opend;
@@ -168,7 +186,7 @@ namespace mjlib.HandCalculating
                         if (setWasOpen)
                             fuDetails.Add(new FuDetail(8, OPEN_KAN));
                         else
-                            fuDetails.Add(new FuDetail(16, CLOSED_PON));
+                            fuDetails.Add(new FuDetail(16, CLOSED_KAN));
                     }
                     else
                     {

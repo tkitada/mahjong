@@ -4,8 +4,8 @@ namespace mjlib.HandCalculating
 {
     internal class HandConfig : HandConstans
     {
-        public Yaku Yaku = null;
-        public OptionalRules Options = null;
+        public Yaku Yaku { get; }
+        public OptionalRules Options { get; }
 
         public bool IsTsumo { get; }
         public bool IsRiichi { get; }
@@ -41,7 +41,7 @@ namespace mjlib.HandCalculating
             int? roundWind = null)
         {
             Yaku = yaku;
-            Options = options;
+            Options = options ?? new OptionalRules();
             IsTsumo = isTsumo;
             IsRiichi = isRiichi;
             IsIppatsu = isIppatsu;
