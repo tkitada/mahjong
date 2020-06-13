@@ -128,8 +128,7 @@ namespace mjlib.HandCalculating
             }
 
             //符あり雀頭
-            var countOfValuedPairs = valuedTiles.Where(x => x == pair[0].Value)
-                                                .Count();
+            var countOfValuedPairs = valuedTiles.Count(x => x == pair[0].Value);
             if (countOfValuedPairs == 1)
             {
                 fuDetails.Add(new FuDetail(2, VALUED_PAIR));

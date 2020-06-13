@@ -24,7 +24,7 @@ namespace mjlib.HandCalculating.YakuList
 
         public override bool IsConditionMet(IList<TileKinds> hand, object[] args = null)
         {
-            return hand.Where(x => x.IsPon).Count() == 4;
+            return hand.Count(x => x.IsPon) == 4;
         }
     }
 }

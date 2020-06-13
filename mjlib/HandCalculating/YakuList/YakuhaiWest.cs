@@ -27,11 +27,11 @@ namespace mjlib.HandCalculating.YakuList
             var playerWind = (int)args[0];
             var round_wind = (int)args[1];
 
-            return hand.Where(
-                x => x.IsPon && x[0].Value == playerWind).Count() == 1
+            return hand.Count(
+                x => x.IsPon && x[0].Value == playerWind) == 1
                     && playerWind == Constants.WEST
-                || hand.Where(
-                x => x.IsPon && x[0].Value == round_wind).Count() == 1
+                || hand.Count(
+                x => x.IsPon && x[0].Value == round_wind) == 1
                     && round_wind == Constants.WEST;
         }
     }

@@ -4,21 +4,21 @@ using System.Linq;
 
 namespace mjlib.HandCalculating.YakuList
 {
-    internal class Honitsu : Yaku
+    internal class Chinitsu : Yaku
     {
-        public override int YakuId => 32;
+        public override int YakuId => 35;
 
-        public override int TenhouId => 34;
+        public override int TenhouId => 35;
 
-        public override string Name => "Honitsu";
+        public override string Name => "Chinitsu";
 
-        public override string Japanese => "混一色";
+        public override string Japanese => "清一色";
 
-        public override string English => "Half Flush";
+        public override string English => "Flush";
 
-        public override int HanOpen => 2;
+        public override int HanOpen => 5;
 
-        public override int HanClosed => 2;
+        public override int HanClosed => 6;
 
         public override bool IsYakuman => false;
 
@@ -27,13 +27,9 @@ namespace mjlib.HandCalculating.YakuList
             var manSets = 0;
             var pinSets = 0;
             var souSets = 0;
-            var honorSets = 0;
+            var honorsSets = 0;
             foreach (var item in hand)
             {
-                if (Constants.HONOR_INDICES.Contains(item[0].Value))
-                {
-                    honorSets++;
-                }
                 if (item[0].IsMan)
                 {
                     manSets++;
@@ -46,15 +42,17 @@ namespace mjlib.HandCalculating.YakuList
                 {
                     souSets++;
                 }
+                if (Constants.HONOR_INDICES.Contains(item[0].Value))
+                {
+                    honorsSets++;
+                }
             }
             var sets = new List<int>
             {
-                manSets,
-                pinSets,
-                souSets
+                manSets, pinSets, souSets
             };
-            var onlyOneSuit = sets.Count(x => x != 0) == 1;
-            return onlyOneSuit && honorSets != 0;
+            return sets.Count(x => x != 0) == 1
+                && honorsSets == 0;
         }
     }
 }

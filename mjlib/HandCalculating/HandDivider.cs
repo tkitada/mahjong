@@ -234,12 +234,10 @@ namespace mjlib.HandCalculating
                 var countOfTiles = 0;
                 while (countOfSets > countOfTiles)
                 {
-                    countOfTiles = indices.Where(x => item[0].Equals(x))
-                                          .Count() / 3;
-                    countOfSets = validCombinationsCopy.Where(x => item[0].Equals(x[0])
+                    countOfTiles = indices.Count(x => item[0].Equals(x)) / 3;
+                    countOfSets = validCombinationsCopy.Count(x => item[0].Equals(x[0])
                                                                 && item[1].Equals(x[1])
-                                                                && item[2].Equals(x[2]))
-                                                       .Count();
+                                                                && item[2].Equals(x[2]));
                     if (countOfSets > countOfTiles)
                     {
                         validCombinationsCopy.Remove(item);
@@ -255,10 +253,9 @@ namespace mjlib.HandCalculating
                 var countOfPossibleSets = 4;
                 while (countOfSets > countOfPossibleSets)
                 {
-                    countOfSets = validCombinationsCopy.Where(x => item[0].Equals(x[0])
+                    countOfSets = validCombinationsCopy.Count(x => item[0].Equals(x[0])
                                                                 && item[1].Equals(x[1])
-                                                                && item[2].Equals(x[2]))
-                                                       .Count();
+                                                                && item[2].Equals(x[2]));
                     if (countOfSets > countOfPossibleSets)
                     {
                         validCombinationsCopy.Remove(item);

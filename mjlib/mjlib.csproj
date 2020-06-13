@@ -68,7 +68,12 @@
     <Compile Include="HandCalculating\YakuList\Chankan.cs" />
     <Compile Include="HandCalculating\YakuList\Chanta.cs" />
     <Compile Include="HandCalculating\YakuList\Chiitoitsu.cs" />
+    <Compile Include="HandCalculating\YakuList\Chinitsu.cs" />
     <Compile Include="HandCalculating\YakuList\Chun.cs" />
+    <Compile Include="HandCalculating\YakuList\Akadora.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\Chiihou.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\Chinroutou.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\ChuurenPoutou.cs" />
     <Compile Include="HandCalculating\YakuList\DaburuRiichi.cs" />
     <Compile Include="HandCalculating\YakuList\Haitei.cs" />
     <Compile Include="HandCalculating\YakuList\Haku.cs" />
@@ -79,11 +84,20 @@
     <Compile Include="HandCalculating\YakuList\Iipeiko.cs" />
     <Compile Include="HandCalculating\YakuList\Ippatsu.cs" />
     <Compile Include="HandCalculating\YakuList\Ittsu.cs" />
+    <Compile Include="HandCalculating\YakuList\Junchan.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\DaburuChuurenPoutou.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\DaburuKokushiMusou.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\Daisangen.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\Daisharin.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\DaiSuushi.cs" />
+    <Compile Include="HandCalculating\YakuList\Dora.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\KokushiMusou.cs" />
     <Compile Include="HandCalculating\YakuList\NagashiMangan.cs" />
     <Compile Include="HandCalculating\YakuList\Pinfu.cs" />
     <Compile Include="HandCalculating\YakuList\Renhou.cs" />
     <Compile Include="HandCalculating\YakuList\Riichi.cs" />
     <Compile Include="HandCalculating\YakuList\Rinshan.cs" />
+    <Compile Include="HandCalculating\YakuList\Ryanpeikou.cs" />
     <Compile Include="HandCalculating\YakuList\Sanankou.cs" />
     <Compile Include="HandCalculating\YakuList\SanKantsu.cs" />
     <Compile Include="HandCalculating\YakuList\Sanshoku.cs" />
@@ -99,6 +113,14 @@
     <Compile Include="HandCalculating\YakuList\YakuhaiOfRound.cs" />
     <Compile Include="HandCalculating\YakuList\YakuhaiSouth.cs" />
     <Compile Include="HandCalculating\YakuList\YakuhaiWest.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\RenhouYakuman.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\Ryuuiisou.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\Shousuushii.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\Suuankou.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\SuuankouTanki.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\Suukantsu.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\Tenhou.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\Tsuuiisou.cs" />
     <Compile Include="Meld.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shanten.cs" />
@@ -108,9 +130,7 @@
     <Compile Include="Tiles\TileKinds.cs" />
     <Compile Include="Tiles\Tiles34.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="HandCalculating\YakuList\Yakuman\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
