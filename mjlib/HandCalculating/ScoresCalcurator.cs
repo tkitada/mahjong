@@ -19,9 +19,9 @@ namespace mjlib.HandCalculating
         }
     }
 
-    internal class ScoresCalcurator
+    internal static class ScoresCalcurator
     {
-        public Cost CalculateScores(int han, int fu, HandConfig config, bool isYakuman = false)
+        public static Cost CalculateScores(int han, int fu, HandConfig config, bool isYakuman = false)
         {
             //数え役満
             if (han >= 13 && !isYakuman)
