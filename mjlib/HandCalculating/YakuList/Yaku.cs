@@ -10,8 +10,8 @@ namespace mjlib.HandCalculating
         public abstract string Name { get; }
         public abstract string Japanese { get; }
         public abstract string English { get; }
-        public abstract int HanOpen { get; }
-        public abstract int HanClosed { get; }
+        public abstract int HanOpen { get; set; }
+        public abstract int HanClosed { get; set; }
         public abstract bool IsYakuman { get; }
 
         public abstract bool IsConditionMet(IList<TileKinds> hand, object[] args = null);

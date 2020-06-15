@@ -15,9 +15,9 @@ namespace mjlib.HandCalculating.YakuList
 
         public override string English => "Terminal Or Honor In Each Group";
 
-        public override int HanOpen => 1;
+        public override int HanOpen { get; set; } = 1;
 
-        public override int HanClosed => 2;
+        public override int HanClosed { get; set; } = 2;
 
         public override bool IsYakuman => false;
 

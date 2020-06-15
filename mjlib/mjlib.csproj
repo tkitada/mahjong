@@ -59,7 +59,6 @@
     <Compile Include="Agari.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="HandCalculating\FuCalculator.cs" />
-    <Compile Include="HandCalculating\Hand.cs" />
     <Compile Include="HandCalculating\HandCalculator.cs" />
     <Compile Include="HandCalculating\HandConfig.cs" />
     <Compile Include="HandCalculating\HandDivider.cs" />

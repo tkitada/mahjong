@@ -17,9 +17,9 @@ namespace mjlib.HandCalculating.YakuList.Yakuman
 
         public override string English => "Small Four Winds";
 
-        public override int HanOpen => 13;
+        public override int HanOpen { get; set; } = 13;
 
-        public override int HanClosed => 13;
+        public override int HanClosed { get; set; } = 13;
 
         public override bool IsYakuman => true;
 

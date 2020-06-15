@@ -16,9 +16,9 @@ namespace mjlib.HandCalculating.YakuList
 
         public override string English => "East Round/Seat";
 
-        public override int HanOpen => 1;
+        public override int HanOpen { get; set; } = 1;
 
-        public override int HanClosed => 1;
+        public override int HanClosed { get; set; } = 1;
 
         public override bool IsYakuman => false;
 

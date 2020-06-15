@@ -15,9 +15,9 @@ namespace mjlib.HandCalculating.YakuList.Yakuman
 
         public override string English => "Four Concealed Triplets Single Wait";
 
-        public override int HanOpen => 26;
+        public override int HanOpen { get; set; } = 26;
 
-        public override int HanClosed => 26;
+        public override int HanClosed { get; set; } = 26;
 
         public override bool IsYakuman => true;
 

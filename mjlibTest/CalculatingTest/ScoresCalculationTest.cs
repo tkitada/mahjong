@@ -258,7 +258,6 @@ namespace mjlibTest.CalculatingTest
 
             result = CalculateScores(han: 3, fu: 60, config: config);
             Assert.AreEqual(12000, result.Main);
-
         }
     }
 }

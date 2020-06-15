@@ -16,9 +16,9 @@ namespace mjlib.HandCalculating.YakuList
 
         public override string English => "Two Sets Of Identical Sequences";
 
-        public override int HanOpen => 0;
+        public override int HanOpen { get; set; } = 0;
 
-        public override int HanClosed => 3;
+        public override int HanClosed { get; set; } = 3;
 
         public override bool IsYakuman => false;
 

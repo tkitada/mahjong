@@ -16,9 +16,9 @@ namespace mjlib.HandCalculating.YakuList
 
         public override string English => "Seven Pairs";
 
-        public override int HanOpen => 0;
+        public override int HanOpen { get; set; } = 0;
 
-        public override int HanClosed => 2;
+        public override int HanClosed { get; set; } = 2;
 
         public override bool IsYakuman => false;
 

@@ -20,8 +20,8 @@ namespace mjlib.HandCalculating
         public bool IsRenhou { get; }
         public bool IsChiihou { get; }
         public bool IsDealer { get; }
-        public int? PlayerWind { get; }
-        public int? RoundWind { get; }
+        public int PlayerWind { get; }
+        public int RoundWind { get; }
 
         public HandConfig(Yaku yaku = null,
             OptionalRules options = null,
@@ -37,8 +37,8 @@ namespace mjlib.HandCalculating
             bool isTenhou = false,
             bool isRenhou = false,
             bool isChiihou = false,
-            int? playerWind = null,
-            int? roundWind = null)
+            int playerWind = 0,
+            int roundWind = 0)
         {
             Yaku = yaku;
             Options = options ?? new OptionalRules();

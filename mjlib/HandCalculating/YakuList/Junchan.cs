@@ -15,9 +15,9 @@ namespace mjlib.HandCalculating.YakuList
 
         public override string English => "Terminal In Each Meld";
 
-        public override int HanOpen => 2;
+        public override int HanOpen { get; set; } = 2;
 
-        public override int HanClosed => 3;
+        public override int HanClosed { get; set; } = 3;
 
         public override bool IsYakuman => false;
 
@@ -42,8 +42,8 @@ namespace mjlib.HandCalculating.YakuList
                 {
                     countOfChi++;
                 }
-                if (TileInIndices(item, Constants.TERMINAL_INDICES)) ;
-                terminalSets++;
+                if (TileInIndices(item, Constants.TERMINAL_INDICES))
+                    terminalSets++;
             }
             return countOfChi != 0 && terminalSets == 5;
         }

@@ -16,9 +16,9 @@ namespace mjlib.HandCalculating.YakuList.Yakuman
 
         public override string English => "Nine Gates";
 
-        public override int HanOpen => 0;
+        public override int HanOpen { get; set; } = 0;
 
-        public override int HanClosed => 13;
+        public override int HanClosed { get; set; } = 13;
 
         public override bool IsYakuman => true;
 

@@ -10,8 +10,8 @@ namespace mjlib.HandCalculating.YakuList
         public override string Name => "Houtei Raoyui";
         public override string Japanese => "河底撈魚";
         public override string English => "Win by last discard";
-        public override int HanOpen => 1;
-        public override int HanClosed => 1;
+        public override int HanOpen { get; set; } = 1;
+        public override int HanClosed { get; set; } = 1;
         public override bool IsYakuman => false;
 
         public override bool IsConditionMet(IList<TileKinds> hand, object[] args = null)

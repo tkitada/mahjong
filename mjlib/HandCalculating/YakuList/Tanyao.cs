@@ -11,8 +11,8 @@ namespace mjlib.HandCalculating.YakuList
         public override string Name => "Tanyao";
         public override string Japanese => "断么九";
         public override string English => "All Simples";
-        public override int HanOpen => 1;
-        public override int HanClosed => 1;
+        public override int HanOpen { get; set; } = 1;
+        public override int HanClosed { get; set; } = 1;
         public override bool IsYakuman => false;
 
         public override bool IsConditionMet(IList<TileKinds> hand, object[] args = null)

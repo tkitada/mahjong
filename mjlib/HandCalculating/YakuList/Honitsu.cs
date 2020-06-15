@@ -16,9 +16,9 @@ namespace mjlib.HandCalculating.YakuList
 
         public override string English => "Half Flush";
 
-        public override int HanOpen => 2;
+        public override int HanOpen { get; set; } = 2;
 
-        public override int HanClosed => 2;
+        public override int HanClosed { get; set; } = 2;
 
         public override bool IsYakuman => false;
 
