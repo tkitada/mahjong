@@ -11,7 +11,7 @@ namespace mjlib.HandCalculating.YakuList
 
         public override string Name => "Junchan";
 
-        public override string Japanese => "純全帯么九";
+        public override string Japanese => "純全帯幺九";
 
         public override string English => "Terminal In Each Meld";
 

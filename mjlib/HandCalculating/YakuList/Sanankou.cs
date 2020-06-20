@@ -28,7 +28,7 @@ namespace mjlib.HandCalculating.YakuList
             var melds = (List<Meld>)args[1];
             var isTsumo = (bool)args[2];
 
-            var openSets = melds.Where(x => x.Opend)
+            var openSets = melds.Where(x => x.Opened)
                                 .Select(x => x.TileKinds);
             var chiSets = hand.Where(x => x.IsChi
                 && x.Contains(winTile) && !openSets.Contains(x));

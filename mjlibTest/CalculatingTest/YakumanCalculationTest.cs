@@ -317,7 +317,7 @@ namespace mjlibTest.CalculatingTest
             AreEqual(50, result.Fu);
             AreEqual(1, result.Yaku.Count);
 
-            tiles = TileIds.Parse(sou: "22", honors:"111222333444");
+            tiles = TileIds.Parse(sou: "22", honors: "111222333444");
             winTile = TileId.Parse(honors: "4");
             result = EstimateHandValue(tiles, winTile, config: new HandConfig(options: new OptionalRules(hasDoubleYakuman: false)));
             AreEqual(null, result.Error);

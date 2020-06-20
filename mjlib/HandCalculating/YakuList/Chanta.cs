@@ -11,7 +11,7 @@ namespace mjlib.HandCalculating.YakuList
 
         public override string Name => "Chanta";
 
-        public override string Japanese => "混全帯么九";
+        public override string Japanese => "混全帯幺九";
 
         public override string English => "Terminal Or Honor In Each Group";
 

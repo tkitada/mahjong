@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 using mjlib.Tiles;
 using System.Linq;
+using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 using static mjlibTest.TestsMixin;
 
 namespace mjlibTest

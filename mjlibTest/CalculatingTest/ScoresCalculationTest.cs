@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 using mjlib;
 using mjlib.HandCalculating;
+using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 using static mjlib.HandCalculating.ScoresCalcurator;
 
 namespace mjlibTest.CalculatingTest

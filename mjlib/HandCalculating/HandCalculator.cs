@@ -33,7 +33,7 @@ namespace mjlib.HandCalculating
 
             var handYaku = new List<Yaku>();
             var tiles34 = tiles.ToTiles34();
-            var openedMelds = melds.Where(x => x.Opend)
+            var openedMelds = melds.Where(x => x.Opened)
                                  .Select(x => x.TileKinds)
                                  .ToList();
             var allMelds = melds.Select(x => x.TileKinds).ToList();
@@ -119,6 +119,14 @@ namespace mjlib.HandCalculating
                     {
                         handYaku.Add(new Daisharin());
                     }
+                    if (config_.IsRiichi && !config_.IsDaburuRiichi)
+                    {
+                        handYaku.Add(new Riichi());
+                    }
+                    if (config_.IsDaburuRiichi)
+                    {
+                        handYaku.Add(new DaburuRiichi());
+                    }
                     var isTanyao = new Tanyao().IsConditionMet(hand);
                     if (isOpenHand && !config_.Options.HasOpenTanyao)
                     {
@@ -127,14 +135,6 @@ namespace mjlib.HandCalculating
                     if (isTanyao)
                     {
                         handYaku.Add(new Tanyao());
-                    }
-                    if (config_.IsRiichi && !config_.IsDaburuRiichi)
-                    {
-                        handYaku.Add(new Riichi());
-                    }
-                    if (config_.IsDaburuRiichi)
-                    {
-                        handYaku.Add(new DaburuRiichi());
                     }
                     if (config_.IsIppatsu)
                     {
@@ -244,7 +244,7 @@ namespace mjlib.HandCalculating
                             winTile, melds, config_.IsTsumo
                         }))
                         {
-                            handYaku.Add(new Toitoi());
+                            handYaku.Add(new Sanankou());
                         }
                         if (new SanshokuDoukou().IsConditionMet(hand))
                         {
@@ -509,13 +509,16 @@ namespace mjlib.HandCalculating
                 }
                 var fu = 0;
                 var cost = CalculateScores(han, fu, config_, handYaku.Count > 0);
+                handYaku.Sort((x, y) => x.YakuId.CompareTo(y.YakuId));
                 calculatedHands.Add(new HandResponse(
                     cost, han, fu, handYaku, null, new List<FuDetail>()));
             }
             calculatedHands.Sort((x, y) =>
                 x.Han < y.Han ? 1 : x.Han > y.Han ? -1
                 : x.Fu < y.Fu ? 1 : x.Fu > y.Fu ? -1 : 0);
-            return calculatedHands[0]; ;
+            var resultHand = calculatedHands[0];
+            resultHand.Yaku.Sort((x, y) => x.YakuId.CompareTo(y.YakuId));
+            return resultHand;
         }
 
         private static IEnumerable<TileKinds> FindWinGroups(TileId winTile,

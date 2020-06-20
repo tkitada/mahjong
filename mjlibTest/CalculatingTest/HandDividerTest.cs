@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 using mjlib;
 using mjlib.Tiles;
 using System.Collections.Generic;
 using System.Linq;
+using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 using static mjlib.HandCalculating.HandDivider;
 using static mjlibTest.TestsMixin;
 

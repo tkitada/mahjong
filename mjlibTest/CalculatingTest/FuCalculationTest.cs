@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 using mjlib;
 using mjlib.HandCalculating;
 using mjlib.Tiles;
 using System.Collections.Generic;
 using System.Linq;
+using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 using static mjlib.Constants;
 using static mjlib.HandCalculating.FuCalculator;
 using static mjlibTest.TestsMixin;

@@ -101,7 +101,7 @@ namespace mjlib.HandCalculating
                     copiedOpenedMelds.Remove(x);
                 }
             }
-            var IsOpenHand = melds.Any(x => x.Opend);
+            var IsOpenHand = melds.Any(x => x.Opened);
 
             if (closedChiSets.Contains(winGroup))
             {
@@ -152,7 +152,7 @@ namespace mjlib.HandCalculating
                 var openMelds = melds.Where(x => setItem.Equals(x.TileKinds))
                                     .ToList();
                 var openMeld = openMelds.Count == 0 ? null : openMelds[0];
-                var setWasOpen = !(openMeld is null) && openMeld.Opend;
+                var setWasOpen = !(openMeld is null) && openMeld.Opened;
                 var isKan = !(openMeld is null) &&
                     (openMeld.Type == MeldType.KAN || openMeld.Type == MeldType.CHANKAN);
                 var isYaochu = YAOCHU_INDICES.Contains(setItem[0].Value);

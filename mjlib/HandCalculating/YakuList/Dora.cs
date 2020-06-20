@@ -9,11 +9,11 @@ namespace mjlib.HandCalculating.YakuList
 
         public override int TenhouId => 52;
 
-        public override string Name => "Dora";
+        public override string Name => $"Dora{HanClosed}";
 
-        public override string Japanese => "ドラ";
+        public override string Japanese => $"ドラ{HanClosed}";
 
-        public override string English => "Dora";
+        public override string English => $"Dora{HanClosed}";
 
         public override int HanOpen { get; set; } = 1;
 

@@ -7,7 +7,7 @@ namespace mjlib
     {
         public MeldType Type { get; }
         public TileIds Tiles { get; }
-        public bool Opend { get; }
+        public bool Opened { get; }
         public TileId CalledTile { get; }
         public int? Who { get; }
         public int? FromWho { get; }
@@ -18,17 +18,22 @@ namespace mjlib
 
         public Meld(MeldType meldType = MeldType.None,
             TileIds tiles = null,
-            bool opend = true,
+            bool opened = true,
             TileId calledTile = null,
             int? who = null,
             int? fromWho = null)
         {
             Type = meldType;
             Tiles = tiles;
-            Opend = opend;
+            Opened = opened;
             CalledTile = calledTile;
             Who = who;
             FromWho = fromWho;
+        }
+
+        public override string ToString()
+        {
+            return $"Type: {Type}\tTiles: {Tiles.ToOneLineString()}";
         }
     }
 
