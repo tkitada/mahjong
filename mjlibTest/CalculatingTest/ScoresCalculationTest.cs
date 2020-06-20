@@ -13,7 +13,7 @@ namespace mjlibTest.CalculatingTest
         public void CalculateScoresAndRonTest()
         {
             var config = new HandConfig(
-                options: new OptionalRules(kazoeLimit: HandConstans.KAZOE_NO_LIMIT));
+                options: new OptionalRules(kazoeLimit: Kazoe.Nolimit));
 
             var result = CalculateScores(han: 1, fu: 30, config: config);
             AreEqual(1000, result.Main);
@@ -68,7 +68,7 @@ namespace mjlibTest.CalculatingTest
         public void CalculateScoresAndRonByDealerTest()
         {
             var config = new HandConfig(playerWind: Constants.EAST,
-                options: new OptionalRules(kazoeLimit: HandConstans.KAZOE_NO_LIMIT));
+                options: new OptionalRules(kazoeLimit: Kazoe.Nolimit));
 
             var result = CalculateScores(han: 1, fu: 30, config: config);
             AreEqual(1500, result.Main);
@@ -117,7 +117,7 @@ namespace mjlibTest.CalculatingTest
         public void CalculateScoresAndTsumo()
         {
             var config = new HandConfig(isTsumo: true,
-                options: new OptionalRules(kazoeLimit: HandConstans.KAZOE_NO_LIMIT));
+                options: new OptionalRules(kazoeLimit: Kazoe.Nolimit));
 
             var result = CalculateScores(han: 1, fu: 30, config: config);
             AreEqual(500, result.Main);
@@ -180,7 +180,7 @@ namespace mjlibTest.CalculatingTest
         public void CalcylateScoresAndTsumoByDealerTest()
         {
             var config = new HandConfig(playerWind: Constants.EAST, isTsumo: true,
-                options: new OptionalRules(kazoeLimit: HandConstans.KAZOE_NO_LIMIT));
+                options: new OptionalRules(kazoeLimit: Kazoe.Nolimit));
 
             var result = CalculateScores(han: 1, fu: 30, config: config);
             AreEqual(500, result.Main);

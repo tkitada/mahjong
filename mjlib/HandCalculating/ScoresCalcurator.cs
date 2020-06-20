@@ -1,11 +1,12 @@
 ﻿using System;
-using static mjlib.HandCalculating.HandConstans;
 
 namespace mjlib.HandCalculating
 {
     /// <summary>
-    /// Main: 上がった人の点数
-    /// Additional: それ以外の人の点数
+    /// Main: ツモ: 親の点数 ロン:手の点数
+    /// Additional: ツモ: 子の点数 ロン:なし
+    /// 満貫ツモアガリ->4000オール or (4000, 2000)
+    /// 満貫出アガリ->12000 or 8000
     /// </summary>
     public class Cost
     {
@@ -26,11 +27,11 @@ namespace mjlib.HandCalculating
             //数え役満
             if (han >= 13 && !isYakuman)
             {
-                if (config.Options.KazoeLimit == KAZOE_LIMITED)
+                if (config.Options.KazoeLimit == Kazoe.Limited)
                 {
                     han = 13;
                 }
-                else if (config.Options.KazoeLimit == KAZOE_SANBAIMAN)
+                else if (config.Options.KazoeLimit == Kazoe.Sanbaiman)
                 {
                     han = 12;
                 }

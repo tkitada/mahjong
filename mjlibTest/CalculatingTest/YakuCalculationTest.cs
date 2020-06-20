@@ -1069,17 +1069,17 @@ namespace mjlibTest.CalculatingTest
             var winTile = TileId.Parse(man: "7");
             var melds = new List<Meld> { MakeMeld(MeldType.KAN, man: "2222", isOpen: false) };
             var doraIndicators = TileIds.Parse(man: "1111");
-            var config = new HandConfig(isRiichi: true, options: new OptionalRules(kazoeLimit: HandConstans.KAZOE_LIMITED));
+            var config = new HandConfig(isRiichi: true, options: new OptionalRules(kazoeLimit: Kazoe.Limited));
             var result = EstimateHandValue(tiles, winTile, melds, doraIndicators, config);
             AreEqual(28, result.Han);
             AreEqual(32000, result.Cost.Main);
 
-            config = new HandConfig(isRiichi: true, options: new OptionalRules(kazoeLimit: HandConstans.KAZOE_SANBAIMAN));
+            config = new HandConfig(isRiichi: true, options: new OptionalRules(kazoeLimit: Kazoe.Sanbaiman));
             result = EstimateHandValue(tiles, winTile, melds, doraIndicators, config);
             AreEqual(28, result.Han);
             AreEqual(24000, result.Cost.Main);
 
-            config = new HandConfig(isRiichi: true, options: new OptionalRules(kazoeLimit: HandConstans.KAZOE_NO_LIMIT));
+            config = new HandConfig(isRiichi: true, options: new OptionalRules(kazoeLimit: Kazoe.Nolimit));
             result = EstimateHandValue(tiles, winTile, melds, doraIndicators, config);
             AreEqual(28, result.Han);
             AreEqual(64000, result.Cost.Main);

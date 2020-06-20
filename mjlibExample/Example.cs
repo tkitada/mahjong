@@ -56,17 +56,17 @@ namespace mjlibExample
                 new Meld(MeldType.KAN, TileIds.Parse(man: "2222"), opened: false)
             };
             var doraIndicators = TileIds.Parse(man: "1111"); //ドラ表示牌
-            config = new HandConfig(isRiichi: true, options: new OptionalRules(kazoeLimit: HandConstans.KAZOE_LIMITED));
+            config = new HandConfig(isRiichi: true, options: new OptionalRules(kazoeLimit: Kazoe.Limited));
             result = HandCalculator.EstimateHandValue(tiles, winTile, melds, doraIndicators, config);
             PrintHandResult(tiles, winTile, melds, result);
 
             //三倍満扱い
-            config = new HandConfig(isRiichi: true, options: new OptionalRules(kazoeLimit: HandConstans.KAZOE_SANBAIMAN));
+            config = new HandConfig(isRiichi: true, options: new OptionalRules(kazoeLimit: Kazoe.Sanbaiman));
             result = HandCalculator.EstimateHandValue(tiles, winTile, melds, doraIndicators, config);
             PrintHandResult(tiles, winTile, melds, result);
 
             //13翻ごとに役満を重ねる(26翻でダブル役満)
-            config = new HandConfig(isRiichi: true, options: new OptionalRules(kazoeLimit: HandConstans.KAZOE_NO_LIMIT));
+            config = new HandConfig(isRiichi: true, options: new OptionalRules(kazoeLimit: Kazoe.Nolimit));
             result = HandCalculator.EstimateHandValue(tiles, winTile, melds, doraIndicators, config);
             PrintHandResult(tiles, winTile, melds, result);
         }
