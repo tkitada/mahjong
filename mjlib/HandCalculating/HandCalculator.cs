@@ -11,7 +11,7 @@ using static mjlib.HandCalculating.ScoresCalcurator;
 
 namespace mjlib.HandCalculating
 {
-    internal static class HandCalculator
+    public static class HandCalculator
     {
         private static HandConfig config_;
 
@@ -19,7 +19,7 @@ namespace mjlib.HandCalculating
             TileId winTile,
             List<Meld> melds = null,
             TileIds doraIndicators = null,
-            HandConfig handConfig = null)
+            HandConfig config = null)
         {
             if (melds is null)
             {
@@ -29,15 +29,15 @@ namespace mjlib.HandCalculating
             {
                 doraIndicators = new TileIds();
             }
-            config_ = handConfig ?? new HandConfig();
+            config_ = config ?? new HandConfig();
 
             var handYaku = new List<Yaku>();
             var tiles34 = tiles.ToTiles34();
-            var openMelds = melds.Where(x => x.Opend)
+            var openedMelds = melds.Where(x => x.Opend)
                                  .Select(x => x.TileKinds)
                                  .ToList();
             var allMelds = melds.Select(x => x.TileKinds).ToList();
-            var isOpenHand = openMelds.Count() > 0;
+            var isOpenHand = openedMelds.Count() > 0;
 
             if (config_.IsNagashiMangan)
             {
@@ -86,11 +86,11 @@ namespace mjlib.HandCalculating
                     HAKU, HATSU, CHUN,
                     config_.PlayerWind, config_.RoundWind,
                 };
-                var winGroups = FindWinGroups(winTile, hand, openMelds);
+                var winGroups = FindWinGroups(winTile, hand, openedMelds);
                 foreach (var winGroup in winGroups)
                 {
                     Cost cost = null;
-                    var error = "";
+                    string error = null;
                     handYaku = new List<Yaku>();
                     var han = 0;
                     var (fuDetails, fu) = CalculateFu(
@@ -265,20 +265,6 @@ namespace mjlib.HandCalculating
                         if (new Chun().IsConditionMet(hand))
                         {
                             handYaku.Add(new Chun());
-                        }
-                        if (new YakuhaiEast().IsConditionMet(hand, new object[]
-                        {
-                            config_.PlayerWind, config_.RoundWind
-                        }))
-                        {
-                            if (config_.PlayerWind == EAST)
-                            {
-                                handYaku.Add(new YakuhaiOfPlace());
-                            }
-                            if (config_.RoundWind == EAST)
-                            {
-                                handYaku.Add(new YakuhaiOfRound());
-                            }
                         }
                         if (new YakuhaiEast().IsConditionMet(hand, new object[]
                         {
@@ -524,20 +510,12 @@ namespace mjlib.HandCalculating
                 var fu = 0;
                 var cost = CalculateScores(han, fu, config_, handYaku.Count > 0);
                 calculatedHands.Add(new HandResponse(
-                    cost, han, fu, handYaku, "", new List<FuDetail>()));
+                    cost, han, fu, handYaku, null, new List<FuDetail>()));
             }
             calculatedHands.Sort((x, y) =>
                 x.Han < y.Han ? 1 : x.Han > y.Han ? -1
                 : x.Fu < y.Fu ? 1 : x.Fu > y.Fu ? -1 : 0);
-            var calculateHand = calculatedHands[0];
-
-            return new HandResponse(
-                calculateHand.Cost,
-                calculateHand.Han,
-                calculateHand.Fu,
-                calculateHand.HandYaku,
-                calculateHand.Error,
-                calculateHand.FuDetailSet);
+            return calculatedHands[0]; ;
         }
 
         private static IEnumerable<TileKinds> FindWinGroups(TileId winTile,
@@ -547,7 +525,7 @@ namespace mjlib.HandCalculating
             var closedSetItems = new List<TileKinds>();
             foreach (var x in hand)
             {
-                if (openMelds.Contains(x))
+                if (!openMelds.Contains(x))
                 {
                     closedSetItems.Add(x);
                 }

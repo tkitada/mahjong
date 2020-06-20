@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace mjlib
 {
-    internal class Meld
+    public class Meld
     {
         public MeldType Type { get; }
         public TileIds Tiles { get; }
@@ -32,7 +32,7 @@ namespace mjlib
         }
     }
 
-    internal enum MeldType
+    public enum MeldType
     {
         None,
         CHI,

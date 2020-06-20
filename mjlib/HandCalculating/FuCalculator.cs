@@ -6,7 +6,7 @@ using static mjlib.Constants;
 
 namespace mjlib.HandCalculating
 {
-    internal class FuDetail : IEquatable<FuDetail>
+    public class FuDetail : IEquatable<FuDetail>
     {
         public int Fu { get; }
         public string Reason { get; }
@@ -157,7 +157,7 @@ namespace mjlib.HandCalculating
                     (openMeld.Type == MeldType.KAN || openMeld.Type == MeldType.CHANKAN);
                 var isYaochu = YAOCHU_INDICES.Contains(setItem[0].Value);
 
-                if (!config.IsTsumo && setItem == winGroup)
+                if (!config.IsTsumo && setItem.Equals(winGroup))
                 {
                     setWasOpen = true;
                 }

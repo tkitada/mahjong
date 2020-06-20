@@ -53,6 +53,8 @@
     <Compile Include="CalculatingTest\FuCalculationTest.cs" />
     <Compile Include="CalculatingTest\HandDividerTest.cs" />
     <Compile Include="CalculatingTest\ScoresCalculationTest.cs" />
+    <Compile Include="CalculatingTest\YakumanCalculationTest.cs" />
+    <Compile Include="CalculatingTest\YakuCalculationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShantenTest.cs" />
     <Compile Include="TestsMixin.cs" />

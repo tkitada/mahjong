@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 using mjlib.Tiles;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace mjlibTest
 
             var expected = "1199m1199p1199s1177z";
             var actual = tiles.ToOneLineString();
-            Assert.AreEqual(expected, actual);
+            AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -35,11 +36,11 @@ namespace mjlibTest
 
             var expected = "1244579m3p57z";
             var actual = tiles.ToOneLineString(printAkaDora: false);
-            Assert.AreEqual(expected, actual);
+            AreEqual(expected, actual);
 
             expected = "1244079m3p57z";
             actual = tiles.ToOneLineString(printAkaDora: true);
-            Assert.AreEqual(expected, actual);
+            AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -51,15 +52,15 @@ namespace mjlibTest
             });
 
             var actual = tiles.ToTiles34();
-            Assert.AreEqual(1, actual[0]);
-            Assert.AreEqual(2, actual[8]);
-            Assert.AreEqual(2, actual[9]);
-            Assert.AreEqual(2, actual[17]);
-            Assert.AreEqual(2, actual[18]);
-            Assert.AreEqual(2, actual[26]);
-            Assert.AreEqual(2, actual[27]);
-            Assert.AreEqual(1, actual[33]);
-            Assert.AreEqual(14, actual.Sum());
+            AreEqual(1, actual[0]);
+            AreEqual(2, actual[8]);
+            AreEqual(2, actual[9]);
+            AreEqual(2, actual[17]);
+            AreEqual(2, actual[18]);
+            AreEqual(2, actual[26]);
+            AreEqual(2, actual[27]);
+            AreEqual(1, actual[33]);
+            AreEqual(14, actual.Sum());
         }
 
         [TestMethod]
@@ -73,7 +74,7 @@ namespace mjlibTest
             var actual = t.ToTileIds();
             for (var i = 0; i < expected.Count; i++)
             {
-                Assert.AreEqual(expected[i].Value, actual[i].Value);
+                AreEqual(expected[i].Value, actual[i].Value);
             }
         }
 
@@ -88,7 +89,7 @@ namespace mjlibTest
 
             for (var i = 0; i < expected.Count; i++)
             {
-                Assert.AreEqual(expected[i].Value, actual[i].Value);
+                AreEqual(expected[i].Value, actual[i].Value);
             }
         }
 
@@ -99,29 +100,29 @@ namespace mjlibTest
             {
                 3,4,5,6
             }).FindTileKind(new TileKind(0));
-            Assert.AreEqual(3, actual.Value);
+            AreEqual(3, actual.Value);
 
             actual = new TileIds(new List<int>
             {
                 3, 4, 134, 135
             }).FindTileKind(new TileKind(33));
-            Assert.AreEqual(134, actual.Value);
+            AreEqual(134, actual.Value);
 
             actual = new TileIds(new List<int>
             {
                 3, 4, 134, 135
             }).FindTileKind(new TileKind(20));
-            Assert.AreEqual(null, actual);
+            AreEqual(null, actual);
         }
 
         [TestMethod]
         public void StringToTiles136WithAkaDora()
         {
             var tiles = TileIds.Parse(man: "2244", pin: "333r67", sou: "44", hasAkaDora: true);
-            Assert.IsTrue(tiles.Select(t => t.Value).Contains(FIVE_RED_PIN));
+            IsTrue(tiles.Select(t => t.Value).Contains(FIVE_RED_PIN));
 
             tiles = TileIds.Parse(man: "2244", pin: "333067", sou: "44", hasAkaDora: true);
-            Assert.IsTrue(tiles.Select(t => t.Value).Contains(FIVE_RED_PIN));
+            IsTrue(tiles.Select(t => t.Value).Contains(FIVE_RED_PIN));
         }
 
         [TestMethod]
@@ -129,10 +130,10 @@ namespace mjlibTest
         {
             var initialString = "789m456p555s11222z";
             var tiles = TileIds.Parse(str: initialString);
-            Assert.AreEqual(14, tiles.Count);
+            AreEqual(14, tiles.Count);
 
             var newString = tiles.ToOneLineString();
-            Assert.AreEqual(initialString, newString);
+            AreEqual(initialString, newString);
         }
 
         [TestMethod]
@@ -140,10 +141,10 @@ namespace mjlibTest
         {
             var initialString = "789m456p555s11222z";
             var tiles = Tiles34.Parse(str: initialString);
-            Assert.AreEqual(34, tiles.Count);
+            AreEqual(34, tiles.Count);
 
             var newString = tiles.ToOneLineString();
-            Assert.AreEqual(initialString, newString);
+            AreEqual(initialString, newString);
         }
     }
 }

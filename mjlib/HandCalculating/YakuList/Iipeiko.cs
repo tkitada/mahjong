@@ -32,7 +32,7 @@ namespace mjlib.HandCalculating.YakuList
                 var count = 0;
                 foreach (var y in chiSets)
                 {
-                    if (x == y)
+                    if (x.Equals(y))
                     {
                         count++;
                     }
@@ -42,7 +42,7 @@ namespace mjlib.HandCalculating.YakuList
                     countOfIdenticalChi = count;
                 }
             }
-            return countOfIdenticalChi > 2;
+            return countOfIdenticalChi >= 2;
         }
     }
 }

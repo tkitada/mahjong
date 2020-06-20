@@ -31,7 +31,8 @@ namespace mjlib.HandCalculating.YakuList
                 }
                 return false;
             }
-            var yaoshuSets = 0;
+            var honorSets = 0;
+            var terminalSets = 0;
             var countOfChi = 0;
             foreach (var item in hand)
             {
@@ -39,12 +40,19 @@ namespace mjlib.HandCalculating.YakuList
                 {
                     countOfChi++;
                 }
-                if (TileInIndices(item, Constants.YAOCHU_INDICES))
+                if (TileInIndices(item, Constants.TERMINAL_INDICES))
                 {
-                    yaoshuSets++;
+                    terminalSets++;
+                }
+                if (TileInIndices(item, Constants.HONOR_INDICES))
+                {
+                    honorSets++;
                 }
             }
-            return countOfChi != 0 && yaoshuSets == 5 && yaoshuSets != 0;
+            return countOfChi != 0
+                && terminalSets + honorSets == 5
+                && terminalSets != 0
+                && honorSets != 0;
         }
     }
 }

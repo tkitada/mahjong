@@ -2,26 +2,26 @@
 
 namespace mjlib.HandCalculating
 {
-    internal class HandResponse
+    public class HandResponse
     {
         public Cost Cost { get; }
         public int Han { get; }
         public int Fu { get; }
-        public IList<Yaku> HandYaku { get; }
+        public IList<Yaku> Yaku { get; }
         public string Error { get; }
         public IList<FuDetail> FuDetailSet { get; }
 
         public HandResponse(Cost cost = null,
             int han = 0,
             int fu = 0,
-            IList<Yaku> handYaku = null,
+            IList<Yaku> yaku = null,
             string error = null,
             IList<FuDetail> fuDetailSet = null)
         {
             Cost = cost;
             Han = han;
             Fu = fu;
-            HandYaku = handYaku;
+            Yaku = yaku;
             Error = error;
             FuDetailSet = fuDetailSet;
         }

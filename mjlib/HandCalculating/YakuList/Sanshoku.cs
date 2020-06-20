@@ -54,7 +54,7 @@ namespace mjlib.HandCalculating.YakuList
                         var manNum = new TileKinds(manItem.Select(x => x.Simplify));
                         var pinNum = new TileKinds(pinItem.Select(x => x.Simplify));
                         var souNum = new TileKinds(souItem.Select(x => x.Simplify));
-                        if (manItem == pinItem && pinItem == souItem) return true;
+                        if (manNum.Equals(pinNum) && pinNum.Equals(souNum)) return true;
                     }
                 }
             }

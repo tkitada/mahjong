@@ -18,7 +18,7 @@ namespace mjlib.HandCalculating.YakuList
 
         public override int HanOpen { get; set; } = 2;
 
-        public override int HanClosed { get; set; } = 2;
+        public override int HanClosed { get; set; } = 3;
 
         public override bool IsYakuman => false;
 

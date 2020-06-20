@@ -6,7 +6,9 @@ using static mjlib.Constants;
 
 namespace mjlib.Tiles
 {
-    //牌の種類id0~33をインデックスとしてそれぞれの牌の個数を値として持つ
+    /// <summary>
+    /// 牌の種類id0 ~33をインデックスとして, それぞれの牌の個数を値として持つ
+    /// </summary>
     public class Tiles34 : IEnumerable<int>, IEquatable<Tiles34>
     {
         private readonly IList<int> tiles_;
@@ -164,40 +166,42 @@ namespace mjlib.Tiles
                 return hand[tile.Value] == 0;
             }
             var simplified = tile.Simplify;
-            if (simplified == 0)
+            switch (simplified)
             {
-                indices = new List<int>
+                case 0:
+                    indices = new List<int>
                     {
                         tile.Value,tile.Value+1,tile.Value+2
                     };
-            }
-            else if (simplified == 1)
-            {
-                indices = new List<int>
+                    break;
+
+                case 1:
+                    indices = new List<int>
                     {
                        tile.Value-1, tile.Value,tile.Value+1,tile.Value+2
                     };
-            }
-            else if (simplified == 7)
-            {
-                indices = new List<int>
+                    break;
+
+                case 7:
+                    indices = new List<int>
                     {
                        tile.Value-2, tile.Value-1, tile.Value,tile.Value+1
                     };
-            }
-            else if (simplified == 8)
-            {
-                indices = new List<int>
+                    break;
+
+                case 8:
+                    indices = new List<int>
                     {
                        tile.Value-2, tile.Value-1, tile.Value
                     };
-            }
-            else
-            {
-                indices = new List<int>
+                    break;
+
+                default:
+                    indices = new List<int>
                     {
                        tile.Value-2, tile.Value-1, tile.Value,tile.Value+1,tile.Value+2
                     };
+                    break;
             }
             return indices.All(x => hand[x] == 0);
         }

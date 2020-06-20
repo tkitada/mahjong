@@ -227,5 +227,10 @@ namespace mjlib.Tiles
         {
             return base.GetHashCode();
         }
+
+        public void Add(TileId item)
+        {
+            tiles_.Add(item);
+        }
     }
 }

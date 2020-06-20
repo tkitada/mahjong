@@ -36,7 +36,7 @@ namespace mjlib.HandCalculating.YakuList
                         count++;
                     }
                 }
-                countOfIdenticalChi.Append(count);
+                countOfIdenticalChi.Add(count);
             }
             return countOfIdenticalChi.Count(x => x >= 2) == 4;
         }

@@ -2,7 +2,7 @@
 
 namespace mjlib.HandCalculating
 {
-    internal class HandConfig : HandConstans
+    public class HandConfig : HandConstans
     {
         public Yaku Yaku { get; }
         public OptionalRules Options { get; }
@@ -37,8 +37,8 @@ namespace mjlib.HandCalculating
             bool isTenhou = false,
             bool isRenhou = false,
             bool isChiihou = false,
-            int playerWind = 0,
-            int roundWind = 0)
+            int playerWind = -1,
+            int roundWind = -1)
         {
             Yaku = yaku;
             Options = options ?? new OptionalRules();
@@ -61,7 +61,7 @@ namespace mjlib.HandCalculating
         }
     }
 
-    internal class HandConstans
+    public class HandConstans
     {
         //26翻以上を数えダブル役満としない
         public static int KAZOE_LIMITED => 0;
@@ -73,7 +73,7 @@ namespace mjlib.HandCalculating
         public static int KAZOE_NO_LIMIT => 2;
     }
 
-    internal class OptionalRules
+    public class OptionalRules
     {
         public bool HasOpenTanyao { get; }
         public bool HasAkaDora { get; set; } = false;

@@ -119,22 +119,18 @@ namespace mjlib.HandCalculating
             var unique_hands = new List<List<TileKinds>>();
             foreach (var hand in hands)
             {
-                hand.Sort((x, y) =>
-                {
-                    if (x[0].CompareTo(y[0]) > 0) return 1;
-                    if (x[0].CompareTo(y[0]) < 0) return -1;
-                    return x[1].CompareTo(y[1]);
-                });
+                hand.Sort((x, y) => x[0].CompareTo(y[0]) > 0 ? 1
+                        : x[0].CompareTo(y[0]) < 0 ? -1
+                        : x[1].CompareTo(y[1]));
                 if (unique_hands.All(x =>
                 {
                     var lx = x.ToList();
                     var lhands = hand.ToList();
-                    if (lx.Count != lhands.Count) return false;
                     for (var i = 0; i < lx.Count; i++)
                     {
-                        if (lx[0].Equals(lhands[0])) return false;
+                        if (!lx[i].Equals(lhands[i])) return true;
                     }
-                    return true;
+                    return false;
                 }))
                 {
                     unique_hands.Add(hand);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 using mjlib;
 using mjlib.Tiles;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace mjlibTest.CalculatingTest
         {
             var tiles34 = Tiles34.Parse(man: "234567", sou: "23455", honors: "777");
             var result = DivideHand(tiles34);
-            Assert.AreEqual(1, result.Count);
+            AreEqual(1, result.Count);
             CollectionAssert.AreEqual(new List<string>
             {
                 "234m","567m","234s","55s","777z"
@@ -28,7 +29,7 @@ namespace mjlibTest.CalculatingTest
         {
             var tiles34 = Tiles34.Parse(man: "123", pin: "123", sou: "123", honors: "11222");
             var result = DivideHand(tiles34);
-            Assert.AreEqual(1, result.Count);
+            AreEqual(1, result.Count);
             CollectionAssert.AreEqual(new List<string>
             {
                 "123m","123p","123s","11z","222z"
@@ -40,7 +41,7 @@ namespace mjlibTest.CalculatingTest
         {
             var tiles34 = Tiles34.Parse(man: "23444", pin: "344556", sou: "333");
             var result = DivideHand(tiles34);
-            Assert.AreEqual(1, result.Count);
+            AreEqual(1, result.Count);
             CollectionAssert.AreEqual(new List<string>
             {
                 "234m","44m","345p","456p","333s"
@@ -52,7 +53,7 @@ namespace mjlibTest.CalculatingTest
         {
             var tiles34 = Tiles34.Parse(man: "11122233388899");
             var result = DivideHand(tiles34);
-            Assert.AreEqual(2, result.Count);
+            AreEqual(2, result.Count);
             CollectionAssert.AreEqual(new List<string>
             {
                 "111m","222m","333m","888m","99m"
@@ -68,7 +69,7 @@ namespace mjlibTest.CalculatingTest
         {
             var tiles34 = Tiles34.Parse(sou: "111123666789", honors: "11");
             var result = DivideHand(tiles34);
-            Assert.AreEqual(1, result.Count);
+            AreEqual(1, result.Count);
             CollectionAssert.AreEqual(new List<string>
             {
                 "111s","123s","666s","789s","11z"
@@ -85,7 +86,7 @@ namespace mjlibTest.CalculatingTest
                 MakeMeld(MeldType.CHI, pin:"234")
             };
             var result = DivideHand(tiles34, melds);
-            Assert.AreEqual(1, result.Count);
+            AreEqual(1, result.Count);
             CollectionAssert.AreEqual(new List<string>
             {
                 "234p","789p","789p","789p","22z"
@@ -97,7 +98,7 @@ namespace mjlibTest.CalculatingTest
         {
             var tiles34 = Tiles34.Parse(man: "112233", pin: "99", sou: "445566");
             var result = DivideHand(tiles34);
-            Assert.AreEqual(2, result.Count);
+            AreEqual(2, result.Count);
             CollectionAssert.AreEqual(new List<string>
             {
                 "11m", "22m", "33m", "99p", "44s", "55s", "66s"

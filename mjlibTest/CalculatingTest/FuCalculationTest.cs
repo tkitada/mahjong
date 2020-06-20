@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 using mjlib;
 using mjlib.HandCalculating;
 using mjlib.Tiles;
@@ -27,9 +28,9 @@ namespace mjlibTest.CalculatingTest
                 GetWinGroup(hand, winTile),
                 config);
 
-            Assert.AreEqual(1, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(25, BASE)));
-            Assert.AreEqual(fu, 25);
+            AreEqual(1, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(25, BASE)));
+            AreEqual(fu, 25);
         }
 
         [TestMethod]
@@ -51,10 +52,10 @@ namespace mjlibTest.CalculatingTest
                 config,
                 melds: melds);
 
-            Assert.AreEqual(2, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(20, BASE)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(2, OPEN_PON)));
-            Assert.AreEqual(fu, 30);
+            AreEqual(2, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(20, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(2, OPEN_PON)));
+            AreEqual(fu, 30);
         }
 
         [TestMethod]
@@ -72,13 +73,13 @@ namespace mjlibTest.CalculatingTest
                 winTile,
                 winGroups[0],
                 config);
-            Assert.AreEqual(30, fu);
+            AreEqual(30, fu);
 
             (fuDetails, fu) = CalculateFu(hand,
                 winTile,
                 winGroups[1],
                 config);
-            Assert.AreEqual(40, fu);
+            AreEqual(40, fu);
         }
 
         [TestMethod]
@@ -100,9 +101,9 @@ namespace mjlibTest.CalculatingTest
                 config,
                 melds: melds);
 
-            Assert.AreEqual(1, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(20, BASE)));
-            Assert.AreEqual(fu, 20);
+            AreEqual(1, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(20, BASE)));
+            AreEqual(fu, 20);
         }
 
         [TestMethod]
@@ -119,7 +120,7 @@ namespace mjlibTest.CalculatingTest
                 GetWinGroup(hand, winTile),
                 config);
 
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(20, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(20, BASE)));
         }
 
         [TestMethod]
@@ -136,9 +137,9 @@ namespace mjlibTest.CalculatingTest
                 GetWinGroup(hand, winTile),
                 config);
 
-            Assert.AreEqual(1, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(20, BASE)));
-            Assert.AreEqual(fu, 20);
+            AreEqual(1, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(20, BASE)));
+            AreEqual(fu, 20);
         }
 
         [TestMethod]
@@ -156,10 +157,10 @@ namespace mjlibTest.CalculatingTest
                 GetWinGroup(hand, winTile),
                 config);
 
-            Assert.AreEqual(2, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(20, BASE)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(2, TSUMO)));
-            Assert.AreEqual(fu, 30);
+            AreEqual(2, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(20, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(2, TSUMO)));
+            AreEqual(fu, 30);
         }
 
         [TestMethod]
@@ -176,9 +177,9 @@ namespace mjlibTest.CalculatingTest
                 GetWinGroup(hand, winTile),
                 config);
 
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(20, BASE)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(2, TSUMO)));
-            Assert.AreEqual(fu, 30);
+            IsTrue(fuDetails.Contains(new FuDetail(20, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(2, TSUMO)));
+            AreEqual(fu, 30);
         }
 
         [TestMethod]
@@ -195,10 +196,10 @@ namespace mjlibTest.CalculatingTest
                 GetWinGroup(hand, winTile),
                 config);
 
-            Assert.AreEqual(2, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(2, PENCHAN)));
-            Assert.AreEqual(fu, 40);
+            AreEqual(2, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(2, PENCHAN)));
+            AreEqual(fu, 40);
 
             tiles = TileIds.Parse(man: "123456", pin: "55", sou: "34589");
             winTile = TileId.Parse(sou: "7");
@@ -209,10 +210,10 @@ namespace mjlibTest.CalculatingTest
                 GetWinGroup(hand, winTile),
                 config);
 
-            Assert.AreEqual(2, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(2, PENCHAN)));
-            Assert.AreEqual(fu, 40);
+            AreEqual(2, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(2, PENCHAN)));
+            AreEqual(fu, 40);
         }
 
         [TestMethod]
@@ -229,10 +230,10 @@ namespace mjlibTest.CalculatingTest
                 GetWinGroup(hand, winTile),
                 config);
 
-            Assert.AreEqual(2, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(2, KANCHAN)));
-            Assert.AreEqual(fu, 40);
+            AreEqual(2, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(2, KANCHAN)));
+            AreEqual(fu, 40);
         }
 
         [TestMethod]
@@ -251,10 +252,10 @@ namespace mjlibTest.CalculatingTest
                 config,
                 valuedTiles: valuedTiles);
 
-            Assert.AreEqual(2, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(2, VALUED_PAIR)));
-            Assert.AreEqual(fu, 40);
+            AreEqual(2, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(2, VALUED_PAIR)));
+            AreEqual(fu, 40);
 
             valuedTiles = new List<int> { EAST, EAST };
             (fuDetails, fu) = CalculateFu(hand,
@@ -263,11 +264,11 @@ namespace mjlibTest.CalculatingTest
                 config,
                 valuedTiles: valuedTiles);
 
-            Assert.AreEqual(3, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(2, VALUED_PAIR)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(2, VALUED_PAIR)));
-            Assert.AreEqual(fu, 40);
+            AreEqual(3, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(2, VALUED_PAIR)));
+            IsTrue(fuDetails.Contains(new FuDetail(2, VALUED_PAIR)));
+            AreEqual(fu, 40);
         }
 
         [TestMethod]
@@ -284,10 +285,10 @@ namespace mjlibTest.CalculatingTest
                 GetWinGroup(hand, winTile),
                 config);
 
-            Assert.AreEqual(2, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(2, PAIR_WAIT)));
-            Assert.AreEqual(fu, 40);
+            AreEqual(2, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(2, PAIR_WAIT)));
+            AreEqual(fu, 40);
         }
 
         [TestMethod]
@@ -304,10 +305,10 @@ namespace mjlibTest.CalculatingTest
                 GetWinGroup(hand, winTile),
                 config);
 
-            Assert.AreEqual(2, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(4, CLOSED_PON)));
-            Assert.AreEqual(fu, 40);
+            AreEqual(2, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(4, CLOSED_PON)));
+            AreEqual(fu, 40);
         }
 
         [TestMethod]
@@ -324,10 +325,10 @@ namespace mjlibTest.CalculatingTest
                 GetWinGroup(hand, winTile),
                 config);
 
-            Assert.AreEqual(2, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(8, CLOSED_TERMINAL_PON)));
-            Assert.AreEqual(fu, 40);
+            AreEqual(2, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(8, CLOSED_TERMINAL_PON)));
+            AreEqual(fu, 40);
 
             tiles = TileIds.Parse(man: "123456", pin: "11", sou: "11678");
             winTile = TileId.Parse(sou: "1");
@@ -338,10 +339,10 @@ namespace mjlibTest.CalculatingTest
                 GetWinGroup(hand, winTile),
                 config);
 
-            Assert.AreEqual(2, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(4, OPEN_TERMINAL_PON)));
-            Assert.AreEqual(fu, 40);
+            AreEqual(2, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(4, OPEN_TERMINAL_PON)));
+            AreEqual(fu, 40);
         }
 
         [TestMethod]
@@ -358,10 +359,10 @@ namespace mjlibTest.CalculatingTest
                 GetWinGroup(hand, winTile),
                 config);
 
-            Assert.AreEqual(2, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(8, CLOSED_TERMINAL_PON)));
-            Assert.AreEqual(fu, 40);
+            AreEqual(2, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(8, CLOSED_TERMINAL_PON)));
+            AreEqual(fu, 40);
 
             tiles = TileIds.Parse(man: "123456", sou: "11678", honors: "11");
             winTile = TileId.Parse(honors: "1");
@@ -372,10 +373,10 @@ namespace mjlibTest.CalculatingTest
                 GetWinGroup(hand, winTile),
                 config);
 
-            Assert.AreEqual(2, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(4, OPEN_TERMINAL_PON)));
-            Assert.AreEqual(fu, 40);
+            AreEqual(2, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(4, OPEN_TERMINAL_PON)));
+            AreEqual(fu, 40);
         }
 
         [TestMethod]
@@ -397,10 +398,10 @@ namespace mjlibTest.CalculatingTest
                 config,
                 melds: melds);
 
-            Assert.AreEqual(2, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(20, BASE)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(2, OPEN_PON)));
-            Assert.AreEqual(fu, 30);
+            AreEqual(2, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(20, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(2, OPEN_PON)));
+            AreEqual(fu, 30);
         }
 
         [TestMethod]
@@ -422,10 +423,10 @@ namespace mjlibTest.CalculatingTest
                 config,
                 melds: melds);
 
-            Assert.AreEqual(2, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(20, BASE)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(4, OPEN_TERMINAL_PON)));
-            Assert.AreEqual(fu, 30);
+            AreEqual(2, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(20, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(4, OPEN_TERMINAL_PON)));
+            AreEqual(fu, 30);
         }
 
         [TestMethod]
@@ -447,10 +448,10 @@ namespace mjlibTest.CalculatingTest
                 config,
                 melds: melds);
 
-            Assert.AreEqual(2, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(16, CLOSED_KAN)));
-            Assert.AreEqual(fu, 50);
+            AreEqual(2, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(16, CLOSED_KAN)));
+            AreEqual(fu, 50);
         }
 
         [TestMethod]
@@ -472,10 +473,10 @@ namespace mjlibTest.CalculatingTest
                 config,
                 melds: melds);
 
-            Assert.AreEqual(2, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(20, BASE)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(8, OPEN_KAN)));
-            Assert.AreEqual(fu, 30);
+            AreEqual(2, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(20, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(8, OPEN_KAN)));
+            AreEqual(fu, 30);
         }
 
         [TestMethod]
@@ -497,10 +498,10 @@ namespace mjlibTest.CalculatingTest
                 config,
                 melds: melds);
 
-            Assert.AreEqual(2, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(32, CLOSED_TERMINAL_KAN)));
-            Assert.AreEqual(fu, 70);
+            AreEqual(2, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(30, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(32, CLOSED_TERMINAL_KAN)));
+            AreEqual(fu, 70);
         }
 
         [TestMethod]
@@ -522,10 +523,10 @@ namespace mjlibTest.CalculatingTest
                 config,
                 melds: melds);
 
-            Assert.AreEqual(2, fuDetails.Count);
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(20, BASE)));
-            Assert.IsTrue(fuDetails.Contains(new FuDetail(16, OPEN_TERMINAL_KAN)));
-            Assert.AreEqual(fu, 40);
+            AreEqual(2, fuDetails.Count);
+            IsTrue(fuDetails.Contains(new FuDetail(20, BASE)));
+            IsTrue(fuDetails.Contains(new FuDetail(16, OPEN_TERMINAL_KAN)));
+            AreEqual(fu, 40);
         }
 
         private TileKinds GetWinGroup(IList<TileKinds> hand, TileId winTile)

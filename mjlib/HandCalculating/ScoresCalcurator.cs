@@ -7,7 +7,7 @@ namespace mjlib.HandCalculating
     /// Main: 上がった人の点数
     /// Additional: それ以外の人の点数
     /// </summary>
-    internal class Cost
+    public class Cost
     {
         public int Main { get; }
         public int Additional { get; }
