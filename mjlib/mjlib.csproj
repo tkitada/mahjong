@@ -31,8 +31,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Interactive.Async, Version=4.1.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Interactive.Async.4.1.1\lib\net461\System.Interactive.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq.Async, Version=4.1.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Async.4.1.1\lib\net461\System.Linq.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,7 +56,82 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agari.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="HandCalculating\FuCalculator.cs" />
+    <Compile Include="HandCalculating\HandCalculator.cs" />
+    <Compile Include="HandCalculating\HandConfig.cs" />
+    <Compile Include="HandCalculating\HandDivider.cs" />
+    <Compile Include="HandCalculating\HandResponse.cs" />
+    <Compile Include="HandCalculating\ScoresCalcurator.cs" />
+    <Compile Include="HandCalculating\YakuList\Chankan.cs" />
+    <Compile Include="HandCalculating\YakuList\Chanta.cs" />
+    <Compile Include="HandCalculating\YakuList\Chiitoitsu.cs" />
+    <Compile Include="HandCalculating\YakuList\Chinitsu.cs" />
+    <Compile Include="HandCalculating\YakuList\Chun.cs" />
+    <Compile Include="HandCalculating\YakuList\Akadora.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\Chiihou.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\Chinroutou.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\ChuurenPoutou.cs" />
+    <Compile Include="HandCalculating\YakuList\DaburuRiichi.cs" />
+    <Compile Include="HandCalculating\YakuList\Haitei.cs" />
+    <Compile Include="HandCalculating\YakuList\Haku.cs" />
+    <Compile Include="HandCalculating\YakuList\Hatsu.cs" />
+    <Compile Include="HandCalculating\YakuList\Honitsu.cs" />
+    <Compile Include="HandCalculating\YakuList\Honroto.cs" />
+    <Compile Include="HandCalculating\YakuList\Houtei.cs" />
+    <Compile Include="HandCalculating\YakuList\Iipeiko.cs" />
+    <Compile Include="HandCalculating\YakuList\Ippatsu.cs" />
+    <Compile Include="HandCalculating\YakuList\Ittsu.cs" />
+    <Compile Include="HandCalculating\YakuList\Junchan.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\DaburuChuurenPoutou.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\DaburuKokushiMusou.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\Daisangen.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\Daisharin.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\DaiSuushi.cs" />
+    <Compile Include="HandCalculating\YakuList\Dora.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\KokushiMusou.cs" />
+    <Compile Include="HandCalculating\YakuList\NagashiMangan.cs" />
+    <Compile Include="HandCalculating\YakuList\Pinfu.cs" />
+    <Compile Include="HandCalculating\YakuList\Renhou.cs" />
+    <Compile Include="HandCalculating\YakuList\Riichi.cs" />
+    <Compile Include="HandCalculating\YakuList\Rinshan.cs" />
+    <Compile Include="HandCalculating\YakuList\Ryanpeikou.cs" />
+    <Compile Include="HandCalculating\YakuList\Sanankou.cs" />
+    <Compile Include="HandCalculating\YakuList\SanKantsu.cs" />
+    <Compile Include="HandCalculating\YakuList\Sanshoku.cs" />
+    <Compile Include="HandCalculating\YakuList\SanshokuDoukou.cs" />
+    <Compile Include="HandCalculating\YakuList\Shosangen.cs" />
+    <Compile Include="HandCalculating\YakuList\Tanyao.cs" />
+    <Compile Include="HandCalculating\YakuList\Toitoi.cs" />
+    <Compile Include="HandCalculating\YakuList\Tsumo.cs" />
+    <Compile Include="HandCalculating\YakuList\Yaku.cs" />
+    <Compile Include="HandCalculating\YakuList\YakuhaiEast.cs" />
+    <Compile Include="HandCalculating\YakuList\YakuhaiNorth.cs" />
+    <Compile Include="HandCalculating\YakuList\YakuhaiOfPlace.cs" />
+    <Compile Include="HandCalculating\YakuList\YakuhaiOfRound.cs" />
+    <Compile Include="HandCalculating\YakuList\YakuhaiSouth.cs" />
+    <Compile Include="HandCalculating\YakuList\YakuhaiWest.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\RenhouYakuman.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\Ryuuiisou.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\Shousuushii.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\Suuankou.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\SuuankouTanki.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\Suukantsu.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\Tenhou.cs" />
+    <Compile Include="HandCalculating\YakuList\Yakuman\Tsuuiisou.cs" />
+    <Compile Include="Meld.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shanten.cs" />
+    <Compile Include="Tiles\TileId.cs" />
+    <Compile Include="Tiles\TileKind.cs" />
+    <Compile Include="Tiles\TileIds.cs" />
+    <Compile Include="Tiles\TileKinds.cs" />
+    <Compile Include="Tiles\Tiles34.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
