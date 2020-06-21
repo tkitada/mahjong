@@ -9,7 +9,7 @@ namespace mjlib.Tiles
 {
     public class TileIds : IEnumerable<TileId>, IEquatable<TileIds>
     {
-        private readonly IList<TileId> tiles_;
+        private readonly List<TileId> tiles_;
 
         public int Count => tiles_.Count;
 

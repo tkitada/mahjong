@@ -57,7 +57,7 @@ namespace mjlib.HandCalculating
         public const string CLOSED_TERMINAL_KAN = "closed_terminal_kan";
         public const string OPEN_TERMINAL_KAN = "open_terminal_kan";
 
-        public static (IList<FuDetail>, int) CalculateFu(IList<TileKinds> hand,
+        public static (List<FuDetail>, int) CalculateFu(IList<TileKinds> hand,
             TileId winTile,
             TileKinds winGroup,
             HandConfig config,

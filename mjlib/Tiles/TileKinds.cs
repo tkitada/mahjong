@@ -8,7 +8,7 @@ namespace mjlib.Tiles
 {
     public class TileKinds : IEnumerable<TileKind>, IEquatable<TileKinds>, IComparable<TileKinds>
     {
-        private readonly IList<TileKind> tiles_;
+        private readonly List<TileKind> tiles_;
 
         public int Count => tiles_.Count;
 
