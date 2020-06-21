@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mjlibTest", "mjlibTest\mjli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mjlibExample", "mjlibExample\mjlibExample.csproj", "{09A2CE2E-4AE1-4ACB-BFC9-A3BB9BFA5F0A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mjlibs", "mjlibs", "{0302D2D7-4029-40C1-B00A-9ACAAC881585}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F5ACE1E0-848F-4756-84D0-15E20734D20C} = {0302D2D7-4029-40C1-B00A-9ACAAC881585}
+		{58B20C0F-1AF3-4EA5-9B70-67D67C6761FD} = {0302D2D7-4029-40C1-B00A-9ACAAC881585}
+		{09A2CE2E-4AE1-4ACB-BFC9-A3BB9BFA5F0A} = {0302D2D7-4029-40C1-B00A-9ACAAC881585}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {80DFE05B-688D-4D67-8DC4-C5DEB99E6A45}
