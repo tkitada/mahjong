@@ -9,14 +9,14 @@ namespace mjlib.HandCalculating
         public int Fu { get; }
         public List<Yaku> Yaku { get; }
         public string Error { get; }
-        public IList<FuDetail> FuDetailSet { get; }
+        public List<FuDetail> FuDetailSet { get; }
 
         public HandResponse(Cost cost = null,
             int han = 0,
             int fu = 0,
             List<Yaku> yaku = null,
             string error = null,
-            IList<FuDetail> fuDetails = null)
+            List<FuDetail> fuDetails = null)
         {
             Cost = cost;
             Han = han;

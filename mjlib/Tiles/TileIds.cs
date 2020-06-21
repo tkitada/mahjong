@@ -9,7 +9,7 @@ namespace mjlib.Tiles
 {
     public class TileIds : IEnumerable<TileId>, IEquatable<TileIds>
     {
-        private readonly IList<TileId> tiles_;
+        private readonly List<TileId> tiles_;
 
         public int Count => tiles_.Count;
 
@@ -156,7 +156,7 @@ namespace mjlib.Tiles
         public static TileIds Parse(string man = "", string pin = "", string sou = "",
             string honors = "", bool hasAkaDora = false)
         {
-            IList<int> SplitString(string str, int offset, int red)
+            List<int> SplitString(string str, int offset, int red)
             {
                 var temp = new List<int>();
                 var data = new List<int>();
@@ -194,7 +194,7 @@ namespace mjlib.Tiles
                 }
                 return data;
             }
-            var result = SplitString(man, 0, FIVE_RED_MAN).ToList();
+            var result = SplitString(man, 0, FIVE_RED_MAN);
             result.AddRange(SplitString(pin, 36, FIVE_RED_PIN));
             result.AddRange(SplitString(sou, 72, FIVE_RED_SOU));
             result.AddRange(SplitString(honors, 108, -1));

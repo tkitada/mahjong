@@ -11,7 +11,7 @@ namespace mjlib.Tiles
     /// </summary>
     public class Tiles34 : IEnumerable<int>, IEquatable<Tiles34>
     {
-        private readonly IList<int> tiles_;
+        private readonly List<int> tiles_;
 
         public int Count => tiles_.Count;
 
