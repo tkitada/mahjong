@@ -71,7 +71,7 @@ namespace mjlib.HandCalculating
                 return new HandResponse(error: "Ippatsu can't be declared without riichi");
             }
 
-            if (!IsAgari(tiles34, allMelds))
+            if (!IsAgari(tiles34.ToTileIds(), allMelds))
             {
                 return new HandResponse(error: "Hand is not winning");
             }

@@ -9,11 +9,13 @@ namespace mjlib.Tiles
     /// <summary>
     /// 牌の種類id0 ~33をインデックスとして, それぞれの牌の個数を値として持つ
     /// </summary>
-    public class Tiles34 : IEnumerable<int>, IEquatable<Tiles34>
+    public class Tiles34 : IList<int>, IEquatable<Tiles34>
     {
         private readonly List<int> tiles_;
 
         public int Count => tiles_.Count;
+
+        public bool IsReadOnly => ((ICollection<int>)tiles_).IsReadOnly;
 
         public int this[int index]
         {
@@ -204,6 +206,41 @@ namespace mjlib.Tiles
                     break;
             }
             return indices.All(x => hand[x] == 0);
+        }
+
+        public int IndexOf(int item)
+        {
+            return ((IList<int>)tiles_).IndexOf(item);
+        }
+
+        public void Insert(int index, int item)
+        {
+            ((IList<int>)tiles_).Insert(index, item);
+        }
+
+        public void RemoveAt(int index)
+        {
+            ((IList<int>)tiles_).RemoveAt(index);
+        }
+
+        public void Add(int item)
+        {
+            ((ICollection<int>)tiles_).Add(item);
+        }
+
+        public void Clear()
+        {
+            ((ICollection<int>)tiles_).Clear();
+        }
+
+        public void CopyTo(int[] array, int arrayIndex)
+        {
+            ((ICollection<int>)tiles_).CopyTo(array, arrayIndex);
+        }
+
+        public bool Remove(int item)
+        {
+            return ((ICollection<int>)tiles_).Remove(item);
         }
     }
 }

@@ -22,15 +22,15 @@ namespace mjlib
         /// <summary>
         /// シャンテン数を計算する 0:テンパイ, -1: あがり
         /// </summary>
-        /// <param name="_tiles34"></param>
+        /// <param name="tiles"></param>
         /// <param name="openSets"></param>
         /// <param name="chiitoitsu"></param>
         /// <param name="kokushi"></param>
         /// <returns></returns>
-        public static int CalculateShanten(Tiles34 _tiles34, IList<TileKinds> openSets = null,
+        public static int CalculateShanten(TileIds tiles, IList<TileKinds> openSets = null,
             bool chiitoitsu = true, bool kokushi = true)
         {
-            var tiles34 = new Tiles34(_tiles34.Select(t => t));
+            var tiles34 = tiles.ToTiles34();
             Init(tiles34);
             var countOfTiles = tiles34.Sum();
             if (countOfTiles > 14) throw new ArgumentException("牌の数が14個より多いです。", nameof(countOfTiles));

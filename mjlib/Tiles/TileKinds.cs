@@ -6,7 +6,7 @@ using static mjlib.Constants;
 
 namespace mjlib.Tiles
 {
-    public class TileKinds : IEnumerable<TileKind>, IEquatable<TileKinds>, IComparable<TileKinds>
+    public class TileKinds : IList<TileKind>, IEquatable<TileKinds>, IComparable<TileKinds>
     {
         private readonly List<TileKind> tiles_;
 
@@ -24,6 +24,8 @@ namespace mjlib.Tiles
 
         public bool IsPair =>
             Count == 2;
+
+        public bool IsReadOnly => ((ICollection<TileKind>)tiles_).IsReadOnly;
 
         public TileKind this[int index]
         {
@@ -123,6 +125,26 @@ namespace mjlib.Tiles
                 if (this[i].CompareTo(other[i]) < 0) return -1;
             }
             return Count > other.Count ? 1 : Count < other.Count ? -1 : 0;
+        }
+
+        public void Insert(int index, TileKind item)
+        {
+            ((IList<TileKind>)tiles_).Insert(index, item);
+        }
+
+        public void Clear()
+        {
+            ((ICollection<TileKind>)tiles_).Clear();
+        }
+
+        public void CopyTo(TileKind[] array, int arrayIndex)
+        {
+            ((ICollection<TileKind>)tiles_).CopyTo(array, arrayIndex);
+        }
+
+        public bool Remove(TileKind item)
+        {
+            return ((ICollection<TileKind>)tiles_).Remove(item);
         }
     }
 }
