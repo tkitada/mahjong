@@ -7,13 +7,13 @@ namespace mjlib
 {
     public static class Agari
     {
-        public static bool IsAgari(Tiles34 tiles34, IList<TileKinds> openSets = null)
+        public static bool IsAgari(TileIds tiles, IList<TileKinds> openSets = null)
         {
-            var tiles = new Tiles34(tiles34.Select(t => t));
+            var tiles_ = tiles.ToTiles34();
 
             if (!(openSets is null) && openSets.Count != 0)
             {
-                var isolatedTiles = tiles.FindIsolatedTileIndices();
+                var isolatedTiles = tiles_.FindIsolatedTileIndices();
                 foreach (var meld in openSets)
                 {
                     if (isolatedTiles.Count == 0) break;
@@ -22,16 +22,16 @@ namespace mjlib
                     var isolatedTile = isolatedTiles[lastIndex];
                     isolatedTiles.RemoveAt(lastIndex);
 
-                    tiles[meld[0].Value] -= 1;
-                    tiles[meld[1].Value] -= 1;
-                    tiles[meld[2].Value] -= 1;
-                    tiles[isolatedTile.Value] = 3;
+                    tiles_[meld[0].Value] -= 1;
+                    tiles_[meld[1].Value] -= 1;
+                    tiles_[meld[2].Value] -= 1;
+                    tiles_[isolatedTile.Value] = 3;
                 }
             }
 
             //jは4桁のバイナリ
-            var j = (1 << tiles[27]) | (1 << tiles[28]) | (1 << tiles[29]) | (1 << tiles[30]) |
-                (1 << tiles[31]) | (1 << tiles[32]) | (1 << tiles[33]);
+            var j = (1 << tiles_[27]) | (1 << tiles_[28]) | (1 << tiles_[29]) | (1 << tiles_[30]) |
+                (1 << tiles_[31]) | (1 << tiles_[32]) | (1 << tiles_[33]);
 
             //jに5桁目はない
             if (j >= 0x10) return false;
@@ -41,14 +41,14 @@ namespace mjlib
             //2桁目:1-すべての字牌が2つ以上であってはならない
             //么九牌のうち2つの牌が1種類、それ以外は1つ
             if ((j & 3) == 2
-                && tiles[0] * tiles[8] * tiles[9] * tiles[17] * tiles[18] * tiles[26] *
-                   tiles[27] * tiles[28] * tiles[29] * tiles[30] * tiles[31] * tiles[32] * tiles[33] == 2)
+                && tiles_[0] * tiles_[8] * tiles_[9] * tiles_[17] * tiles_[18] * tiles_[26] *
+                   tiles_[27] * tiles_[28] * tiles_[29] * tiles_[30] * tiles_[31] * tiles_[32] * tiles_[33] == 2)
                 return true;
 
             //七対子判定
             //2,4桁目:0-すべての牌が0,2,4つのいずれか
             //2つの牌が7つ存在する
-            if ((j & 10) == 0 && Range(0, 34).Count(i => tiles[i] == 2) == 7)
+            if ((j & 10) == 0 && Range(0, 34).Count(i => tiles_[i] == 2) == 7)
                 return true;
 
             //2桁目:0-すべての字牌は2つ以上か0つである
@@ -56,17 +56,17 @@ namespace mjlib
 
             //(1,4,7),(2,5,8),(3,6,9)それぞれの個数を集めたもの
             //萬子
-            var n00 = tiles[0] + tiles[3] + tiles[6];
-            var n01 = tiles[1] + tiles[4] + tiles[7];
-            var n02 = tiles[2] + tiles[5] + tiles[8];
+            var n00 = tiles_[0] + tiles_[3] + tiles_[6];
+            var n01 = tiles_[1] + tiles_[4] + tiles_[7];
+            var n02 = tiles_[2] + tiles_[5] + tiles_[8];
             //索子
-            var n10 = tiles[9] + tiles[12] + tiles[15];
-            var n11 = tiles[10] + tiles[13] + tiles[16];
-            var n12 = tiles[11] + tiles[14] + tiles[17];
+            var n10 = tiles_[9] + tiles_[12] + tiles_[15];
+            var n11 = tiles_[10] + tiles_[13] + tiles_[16];
+            var n12 = tiles_[11] + tiles_[14] + tiles_[17];
             //筒子
-            var n20 = tiles[18] + tiles[21] + tiles[24];
-            var n21 = tiles[19] + tiles[22] + tiles[25];
-            var n22 = tiles[20] + tiles[23] + tiles[26];
+            var n20 = tiles_[18] + tiles_[21] + tiles_[24];
+            var n21 = tiles_[19] + tiles_[22] + tiles_[25];
+            var n22 = tiles_[20] + tiles_[23] + tiles_[26];
 
             //対子があれば2, 面子のみなら0
             var n0 = (n00 + n01 + n02) % 3;
@@ -76,8 +76,8 @@ namespace mjlib
 
             //雀頭は1つだけ
             if (new List<int> { n0, n1, n2,
-                tiles[27], tiles[28], tiles[29], tiles[30],
-                tiles[31],tiles[32],tiles[33]}.Count(n => n == 2) != 1)
+                tiles_[27], tiles_[28], tiles_[29], tiles_[30],
+                tiles_[31],tiles_[32],tiles_[33]}.Count(n => n == 2) != 1)
                 return false;
 
             //面子を消す
@@ -89,9 +89,9 @@ namespace mjlib
             var nn1 = (n10 * 1 + n11 * 2) % 3;
             var nn2 = (n20 * 1 + n21 * 2) % 3;
 
-            var m0 = ToMeld(tiles, 0);
-            var m1 = ToMeld(tiles, 9);
-            var m2 = ToMeld(tiles, 18);
+            var m0 = ToMeld(tiles_, 0);
+            var m1 = ToMeld(tiles_, 9);
+            var m2 = ToMeld(tiles_, 18);
 
             //3桁目:1-字牌に対子がある
             if ((j & 4) != 0)

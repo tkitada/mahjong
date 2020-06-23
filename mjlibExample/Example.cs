@@ -39,9 +39,9 @@ namespace mjlibExample
             /***********************************************************************/
             /* シャンテン数計算                                                             */
             /***********************************************************************/
-            var tiles34 = Tiles34.Parse(man: "13569", pin: "123459", sou: "443");
-            var shanten = Shanten.CalculateShanten(tiles34);
-            Console.WriteLine(tiles34.ToOneLineString());
+            tiles = TileIds.Parse(man: "13569", pin: "123459", sou: "443");
+            var shanten = Shanten.CalculateShanten(tiles);
+            Console.WriteLine(tiles.ToOneLineString());
             Console.WriteLine($"{shanten}シャンテン");
             Console.WriteLine("");
 

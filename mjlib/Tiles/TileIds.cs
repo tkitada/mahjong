@@ -7,11 +7,13 @@ using static System.Linq.Enumerable;
 
 namespace mjlib.Tiles
 {
-    public class TileIds : IEnumerable<TileId>, IEquatable<TileIds>
+    public class TileIds : IList<TileId>, IEquatable<TileIds>
     {
         private readonly List<TileId> tiles_;
 
         public int Count => tiles_.Count;
+
+        public bool IsReadOnly => ((ICollection<TileId>)tiles_).IsReadOnly;
 
         public TileId this[int index]
         {
@@ -228,9 +230,49 @@ namespace mjlib.Tiles
             return base.GetHashCode();
         }
 
+        public void Add(int item)
+        {
+            tiles_.Add(new TileId(item));
+        }
+
         public void Add(TileId item)
         {
             tiles_.Add(item);
+        }
+
+        public int IndexOf(TileId item)
+        {
+            return ((IList<TileId>)tiles_).IndexOf(item);
+        }
+
+        public void RemoveAt(int index)
+        {
+            ((IList<TileId>)tiles_).RemoveAt(index);
+        }
+
+        public bool Contains(TileId item)
+        {
+            return ((ICollection<TileId>)tiles_).Contains(item);
+        }
+
+        public void Insert(int index, TileId item)
+        {
+            ((IList<TileId>)tiles_).Insert(index, item);
+        }
+
+        public void Clear()
+        {
+            ((ICollection<TileId>)tiles_).Clear();
+        }
+
+        public void CopyTo(TileId[] array, int arrayIndex)
+        {
+            ((ICollection<TileId>)tiles_).CopyTo(array, arrayIndex);
+        }
+
+        public bool Remove(TileId item)
+        {
+            return ((ICollection<TileId>)tiles_).Remove(item);
         }
     }
 }
