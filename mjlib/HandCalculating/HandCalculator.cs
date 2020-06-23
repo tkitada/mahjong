@@ -76,6 +76,14 @@ namespace mjlib.HandCalculating
                 return new HandResponse(error: "Ippatsu can't be declared without riichi");
             }
 
+<<<<<<< HEAD
+=======
+            if (!IsAgari(tiles34.ToTileIds(), allMelds))
+            {
+                return new HandResponse(error: "Hand is not winning");
+            }
+
+>>>>>>> remotes/origin/master
             var handOptions = DivideHand(tiles34, melds);
             var calculatedHands = new List<HandResponse>();
             foreach (var hand in handOptions)
