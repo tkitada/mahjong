@@ -48,6 +48,11 @@ namespace mjlib.HandCalculating
                 return new HandResponse(cost, han, fu, handYaku);
             }
 
+            if (!IsAgari(tiles, allMelds))
+            {
+                return new HandResponse(error: "Hand is not winning");
+            }
+
             if (!tiles.Contains(winTile))
             {
                 return new HandResponse(error: "Win tile not in the hand");
@@ -69,11 +74,6 @@ namespace mjlib.HandCalculating
             if (config_.IsIppatsu && !config_.IsRiichi && !config_.IsDaburuRiichi)
             {
                 return new HandResponse(error: "Ippatsu can't be declared without riichi");
-            }
-
-            if (!IsAgari(tiles34.ToTileIds(), allMelds))
-            {
-                return new HandResponse(error: "Hand is not winning");
             }
 
             var handOptions = DivideHand(tiles34, melds);
