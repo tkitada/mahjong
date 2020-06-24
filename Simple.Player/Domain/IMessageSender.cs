@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Simple.Game.Console
+namespace Simple.Player.Domain
 {
-    class Program
+    interface IMessageSender
     {
-        static void Main(string[] args)
-        {
-        }
+        void Send(string message);
     }
 }

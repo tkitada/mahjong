@@ -7,7 +7,7 @@ namespace mjlib
 {
     public static class Agari
     {
-        internal static bool IsAgari(TileIds tiles, IList<TileKinds> openSets = null)
+        public static bool IsAgari(TileIds tiles, IList<TileKinds> openSets = null)
         {
             var tiles_ = tiles.ToTiles34();
 

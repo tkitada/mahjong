@@ -5,9 +5,9 @@ namespace Simple.Player.Application
 {
     public class TsumoEventArgs : EventArgs
     {
-        public TsumoModel Tsumo{ get; set; }
+        public TsumoNotification Tsumo{ get; set; }
 
-        public TsumoEventArgs(TsumoModel tsumo)
+        public TsumoEventArgs(TsumoNotification tsumo)
         {
             Tsumo = tsumo;
         }

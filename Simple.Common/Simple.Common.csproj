@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\MessageModel.cs" />
-    <Compile Include="Models\TsumoModel.cs" />
+    <Compile Include="Models\DahaiRequest.cs" />
+    <Compile Include="Models\HandNotification.cs" />
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\TsumoNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
