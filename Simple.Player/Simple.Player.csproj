@@ -48,7 +48,6 @@
     <Compile Include="Application\PlayerApplicationService.cs" />
     <Compile Include="Domain\DomainEvent.cs" />
     <Compile Include="Domain\IMessageReceiver.cs" />
-    <Compile Include="Domain\Switcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
