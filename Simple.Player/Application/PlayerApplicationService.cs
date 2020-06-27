@@ -12,6 +12,8 @@ namespace Simple.Player.Application
 
         public event EventHandler<HandEventArgs> HandEvent;
 
+        public event EventHandler<TsumoEventArgs> TsumoEvent;
+
         private readonly IMessageClient client_;
 
         private readonly string name_;
@@ -24,7 +26,6 @@ namespace Simple.Player.Application
             client_.MessageReceivedEvent += OnMessageReceived;
 
             RequestJoin();
-            RequestHand();
         }
 
         private void OnMessageReceived(object sender, MessageReceivedEventArgs e)
@@ -38,6 +39,7 @@ namespace Simple.Player.Application
                     {
                         JoinRes = joinRes
                     });
+                    RequestHand();
                     break;
 
                 case "Hand":
@@ -45,6 +47,15 @@ namespace Simple.Player.Application
                     HandEvent(this, new HandEventArgs
                     {
                         HandRes = handRes
+                    });
+                    RequestTsumo();
+                    break;
+
+                case "Tsumo":
+                    var tsumoRes = JsonConvert.DeserializeObject<TsumoRes>(message.Body);
+                    TsumoEvent(this, new TsumoEventArgs
+                    {
+                        TsumoRes = tsumoRes
                     });
                     break;
 
@@ -69,11 +80,22 @@ namespace Simple.Player.Application
 
         private void RequestHand()
         {
-            var HandReq = new HandReq { };
+            var handReq = new HandReq { };
             var message = new Message
             {
                 Header = "Hand",
-                Body = JsonConvert.SerializeObject(HandReq)
+                Body = JsonConvert.SerializeObject(handReq)
+            };
+            client_.SendMessage(JsonConvert.SerializeObject(message));
+        }
+
+        private void RequestTsumo()
+        {
+            var tsumoReq = new TsumoReq { };
+            var message = new Message
+            {
+                Header = "Tsumo",
+                Body = JsonConvert.SerializeObject(tsumoReq)
             };
             client_.SendMessage(JsonConvert.SerializeObject(message));
         }

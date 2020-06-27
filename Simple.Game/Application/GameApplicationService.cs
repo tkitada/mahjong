@@ -45,6 +45,11 @@ namespace Simple.Game.Application
                     ResponseHand();
                     break;
 
+                case "Tsumo":
+                    var tsumoReq = JsonConvert.DeserializeObject<TsumoReq>(message.Body);
+                    ResponseTsumo();
+                    break;
+
                 default:
                     break;
             }
@@ -74,6 +79,20 @@ namespace Simple.Game.Application
             {
                 Header = "Hand",
                 Body = JsonConvert.SerializeObject(handRes)
+            };
+            server_.SendMessage(JsonConvert.SerializeObject(message));
+        }
+
+        private void ResponseTsumo()
+        {
+            var tsumoRes = new TsumoRes
+            {
+                Tsumo = gameManager_.Tsumo()
+            };
+            var message = new Message
+            {
+                Header = "Tsumo",
+                Body = JsonConvert.SerializeObject(tsumoRes)
             };
             server_.SendMessage(JsonConvert.SerializeObject(message));
         }

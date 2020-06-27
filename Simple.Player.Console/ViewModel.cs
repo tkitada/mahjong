@@ -12,6 +12,7 @@ namespace Simple.Player.Console
 
             appService_.JoinEvent += (_, e) => System.Console.WriteLine($"id: {e.JoinRes.Id}");
             appService_.HandEvent += (_, e) => System.Console.WriteLine($"hand: {e.HandRes.Hand.ToOneLineString()}");
+            appService_.TsumoEvent += (_, e) => System.Console.WriteLine($"tsumo: {e.TsumoRes.Tsumo.ToOneLineString()}");
         }
     }
 }

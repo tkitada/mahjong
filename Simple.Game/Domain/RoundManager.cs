@@ -26,7 +26,7 @@ namespace Simple.Game.Domain
             random_ = new Random();
         }
 
-        internal void Start()
+        public void Start()
         {
             wall_ = new List<int>(Enumerable.Range(0, 136));
             var count = wall_.Count;
@@ -42,11 +42,12 @@ namespace Simple.Game.Domain
             Discards = new List<int>();
         }
 
-        private void Tsumo()
+        public TileId Tsumo()
         {
             var tsumoTile = wall_[0];
             Hand.Add(tsumoTile);
             wall_.RemoveAt(0);
+            return new TileId(tsumoTile);
         }
 
         private void Dahai(int index)

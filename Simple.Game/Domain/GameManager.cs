@@ -34,10 +34,14 @@ namespace Simple.Game.Domain
 
         public TileIds Hand => roundManager_.Hand;
 
+        public TileId Tsumo()
+        {
+            return roundManager_.Tsumo();
+        }
+
         private void UpdateGameInfo()
         {
         }
-
     }
 
     internal class GameInformation
