@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -47,13 +47,15 @@
     <Compile Include="Application\ApplicationEvent.cs" />
     <Compile Include="Application\PlayerApplicationService.cs" />
     <Compile Include="Domain\DomainEvent.cs" />
+    <Compile Include="Domain\IMessageClient.cs" />
     <Compile Include="Domain\IMessageReceiver.cs" />
     <Compile Include="Domain\IMessageSender.cs" />
+    <Compile Include="Infrastructure\MessageClient.cs" />
+    <Compile Include="Infrastructure\MessageReceiver.cs" />
+    <Compile Include="Infrastructure\MessageSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Infrastructure\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\mjlib\mjlib.csproj">
       <Project>{F5ACE1E0-848F-4756-84D0-15E20734D20C}</Project>

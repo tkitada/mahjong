@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -50,13 +50,15 @@
     <Compile Include="Domain\GameManager.cs" />
     <Compile Include="Domain\GameOptionalRules.cs" />
     <Compile Include="Domain\IMessageReceiver.cs" />
-    <Compile Include="Domain\IMessageSebder.cs" />
+    <Compile Include="Domain\IMessageSender.cs" />
+    <Compile Include="Domain\IMessageServer.cs" />
     <Compile Include="Domain\RoundManager.cs" />
+    <Compile Include="Infrastructure\MessageReceiver.cs" />
+    <Compile Include="Infrastructure\MessageSender.cs" />
+    <Compile Include="Infrastructure\MessageServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Infrastructure\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\mjlib\mjlib.csproj">
       <Project>{F5ACE1E0-848F-4756-84D0-15E20734D20C}</Project>

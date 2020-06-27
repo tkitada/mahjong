@@ -1,19 +1,22 @@
 ﻿using Newtonsoft.Json;
 using Simple.Common.Models;
 using Simple.Player.Domain;
+using Simple.Player.Infrastructure;
 using System;
 
 namespace Simple.Player.Application
 {
     public class PlayerApplicationService
     {
-        public event EventHandler<TsumoEventArgs> TsumoEvent;
-
-        private readonly IMessageReceiver receiver_;
+        private readonly IMessageClient client_;
         private readonly IMessageSender sender_;
+        private readonly IMessageReceiver receiver_;
 
         public PlayerApplicationService()
         {
+            client_ = new MessageClient();
+            sender_ = new MessageSender(client_);
+            receiver_ = new MessageReceiver(client_);
             receiver_.MessageReceivedEvent += Receiver__MessageReceivedEvent;
         }
 
@@ -22,21 +25,10 @@ namespace Simple.Player.Application
             var message = JsonConvert.DeserializeObject<Message>(e.Message);
             switch (message.Header)
             {
-                case "Tsumo":
-                    var body = JsonConvert.DeserializeObject<TsumoNotification>(message.Body);
-                    TsumoEvent(this, new TsumoEventArgs(body));
-                    break;
-
                 default:
                     break;
             }
         }
 
-        public void Dahai(int index, bool IsRiichi)
-        {
-            var body = new DahaiRequest(index, IsRiichi);
-            var message = new Message("Dahai", JsonConvert.SerializeObject(body));
-            sender_.Send(JsonConvert.SerializeObject(message));
-        }
     }
 }

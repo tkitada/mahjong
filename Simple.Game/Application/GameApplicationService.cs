@@ -1,24 +1,28 @@
 ﻿using Newtonsoft.Json;
 using Simple.Common.Models;
 using Simple.Game.Domain;
+using Simple.Game.Infrastructure;
 
 namespace Simple.Game.Application
 {
     public class GameApplicationService
     {
+        private readonly IMessageServer server_;
+        private readonly IMessageSender sender_;
         private readonly IMessageReceiver receiver_;
-        private readonly IMessageSebder sender_;
 
         private readonly GameManager gameManager_;
 
         public GameApplicationService()
         {
+            server_ = new MessageServer();
+            sender_ = new MessageSender(server_);
+            receiver_ = new MessageReceiver(server_);
             receiver_.MessageReceivedEvent += OnReceivedMessage;
 
             var rules = new GameOptionalRules();
             gameManager_ = new GameManager(rules);
 
-            gameManager_.HandNotificationEvent += NotifyHand;
         }
 
         public void Start()
@@ -31,19 +35,9 @@ namespace Simple.Game.Application
             var message = JsonConvert.DeserializeObject<Message>(e.Message);
             switch (message.Header)
             {
-                case "Dahai":
-                    var body = JsonConvert.DeserializeObject<DahaiRequest>(message.Body);
-                    break;
-
                 default:
                     break;
             }
-        }
-
-        private void NotifyHand(object sender, HandNotificationEventArgs e)
-        {
-            var message = new Message("Hand", JsonConvert.SerializeObject(e.Hand));
-            sender_.Send(JsonConvert.SerializeObject(message));
         }
     }
 }

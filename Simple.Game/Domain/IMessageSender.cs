@@ -1,6 +1,6 @@
 ﻿namespace Simple.Game.Domain
 {
-    internal interface IMessageSebder
+    internal interface IMessageSender
     {
         void Send(string message);
     }

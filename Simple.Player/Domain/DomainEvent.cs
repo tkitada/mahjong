@@ -4,6 +4,11 @@ namespace Simple.Player.Domain
 {
     internal class MessageReceivedEventArgs : EventArgs
     {
-        public string Message { get; set; }
+        public string Message { get; }
+
+        public MessageReceivedEventArgs(string message)
+        {
+            Message = message;
+        }
     }
 }

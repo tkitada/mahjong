@@ -23,23 +23,4 @@ namespace Simple.Game.Domain
         }
     }
 
-    internal class HandNotificationEventArgs : EventArgs
-    {
-        public HandNotification Hand { get; }
-
-        public HandNotificationEventArgs(HandNotification hand)
-        {
-            Hand = hand;
-        }
-    }
-
-    internal class TsumoNotificationEventArgs : EventArgs
-    {
-        public TsumoNotification Tsumo { get; }
-
-        public TsumoNotificationEventArgs(TsumoNotification tsumo)
-        {
-            Tsumo = tsumo;
-        }
-    }
 }

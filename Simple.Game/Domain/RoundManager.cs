@@ -10,9 +10,6 @@ namespace Simple.Game.Domain
 {
     internal class RoundManager
     {
-        internal event EventHandler<HandNotificationEventArgs> HandNotificationEvent;
-
-        internal event EventHandler<TsumoNotificationEventArgs> TsumoNotificationEvent;
 
         private readonly GameOptionalRules rules_;
         private readonly GameInformation gameInfo_;
@@ -50,13 +47,11 @@ namespace Simple.Game.Domain
 
             flgFirstHand_ = true;
 
-            NotifyHand();
         }
 
-        private void NotifyHand()
+        private void Run()
         {
-            var handNotification = new HandNotification(hand_);
-            HandNotificationEvent(this, new HandNotificationEventArgs(handNotification));
+            Tsumo();
         }
 
         private void Tsumo()
@@ -65,8 +60,6 @@ namespace Simple.Game.Domain
             hand_.Add(tsumoTile);
             wall_.RemoveAt(0);
 
-            var tsumoNotification = new TsumoNotification(new TileId(tsumoTile));
-            TsumoNotificationEvent(this, new TsumoNotificationEventArgs(tsumoNotification));
         }
 
         private void Dahai(int index)

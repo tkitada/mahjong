@@ -7,10 +7,6 @@ namespace Simple.Game.Domain
     {
         internal event EventHandler<GameInfoNotificationEventArgs> GameInfoNotificationEvent;
 
-        internal event EventHandler<HandNotificationEventArgs> HandNotificationEvent;
-
-        internal event EventHandler<TsumoNotificationEventArgs> TsumoNotificationEvent;
-
         private readonly GameOptionalRules rules_;
         private RoundManager roundManager_;
 
@@ -34,6 +30,8 @@ namespace Simple.Game.Domain
             roundCount_ = 1;
             honba_ = 0;
             kyotaku_ = 0;
+
+            Run();
         }
 
         private void Run()
@@ -52,10 +50,6 @@ namespace Simple.Game.Domain
             var gameInfo = new GameInformation(point_, playerWind_, roundWind_, roundCount_, honba_, kyotaku_);
             roundManager_ = new RoundManager(rules_, gameInfo);
 
-            roundManager_.HandNotificationEvent += (_, e) => HandNotificationEvent(this, e);
-            roundManager_.TsumoNotificationEvent += (_, e) => TsumoNotificationEvent(this, e);
-
-            GameInfoNotificationEvent(this, new GameInfoNotificationEventArgs(gameInfo));
         }
 
 
