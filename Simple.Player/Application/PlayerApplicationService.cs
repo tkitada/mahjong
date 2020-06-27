@@ -10,6 +10,8 @@ namespace Simple.Player.Application
     {
         public event EventHandler<JoinEventArgs> JoinEvent;
 
+        public event EventHandler<HandEventArgs> HandEvent;
+
         private readonly IMessageClient client_;
 
         private readonly string name_;
@@ -21,21 +23,8 @@ namespace Simple.Player.Application
             name_ = name;
             client_.MessageReceivedEvent += OnMessageReceived;
 
-            Join();
-        }
-
-        private void Join()
-        {
-            var req = new JoinReq
-            {
-                Name = name_
-            };
-            var message = new Message
-            {
-                Header = "Join",
-                Body = JsonConvert.SerializeObject(req)
-            };
-            client_.SendMessage(JsonConvert.SerializeObject(message));
+            RequestJoin();
+            RequestHand();
         }
 
         private void OnMessageReceived(object sender, MessageReceivedEventArgs e)
@@ -45,12 +34,48 @@ namespace Simple.Player.Application
             {
                 case "Join":
                     var joinRes = JsonConvert.DeserializeObject<JoinRes>(message.Body);
-                    JoinEvent(this, new JoinEventArgs(joinRes));
+                    JoinEvent(this, new JoinEventArgs
+                    {
+                        JoinRes = joinRes
+                    });
+                    break;
+
+                case "Hand":
+                    var handRes = JsonConvert.DeserializeObject<HandRes>(message.Body);
+                    HandEvent(this, new HandEventArgs
+                    {
+                        HandRes = handRes
+                    });
                     break;
 
                 default:
                     break;
             }
+        }
+
+        private void RequestJoin()
+        {
+            var joinReq = new JoinReq
+            {
+                Name = name_
+            };
+            var message = new Message
+            {
+                Header = "Join",
+                Body = JsonConvert.SerializeObject(joinReq)
+            };
+            client_.SendMessage(JsonConvert.SerializeObject(message));
+        }
+
+        private void RequestHand()
+        {
+            var HandReq = new HandReq { };
+            var message = new Message
+            {
+                Header = "Hand",
+                Body = JsonConvert.SerializeObject(HandReq)
+            };
+            client_.SendMessage(JsonConvert.SerializeObject(message));
         }
     }
 }

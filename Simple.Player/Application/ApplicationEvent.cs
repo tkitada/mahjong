@@ -1,15 +1,16 @@
-﻿using Simple.Common.Models;
+﻿using mjlib.Tiles;
+using Simple.Common.Models;
 using System;
 
 namespace Simple.Player.Application
 {
     public class JoinEventArgs : EventArgs
     {
-        public JoinRes JoinRes { get; }
+        public JoinRes JoinRes { get; set; }
+    }
 
-        public JoinEventArgs(JoinRes joinRes)
-        {
-            JoinRes = joinRes;
-        }
+    public class HandEventArgs : EventArgs
+    {
+        public HandRes HandRes { get; set; }
     }
 }

@@ -13,10 +13,8 @@ namespace Simple.Game.Domain
         private readonly GameInformation gameInfo_;
 
         private List<int> wall_;
-        private TileIds hand_;
-        private List<int> discards_;
-
-        private bool flgFirstHand_;
+        public TileIds Hand { get; private set; }
+        public List<int> Discards { get; private set; }
 
         private readonly Random random_;
 
@@ -38,35 +36,28 @@ namespace Simple.Game.Domain
                 (wall_[i], wall_[r]) = (wall_[r], wall_[i]);
             }
 
-            hand_ = new TileIds(wall_.GetRange(0, 13));
+            Hand = new TileIds(wall_.GetRange(0, 13));
             wall_.RemoveRange(0, 13);
 
-            discards_ = new List<int>();
-
-            flgFirstHand_ = true;
-        }
-
-        private void Run()
-        {
-            Tsumo();
+            Discards = new List<int>();
         }
 
         private void Tsumo()
         {
             var tsumoTile = wall_[0];
-            hand_.Add(tsumoTile);
+            Hand.Add(tsumoTile);
             wall_.RemoveAt(0);
         }
 
         private void Dahai(int index)
         {
-            discards_.Add(hand_[index].Value);
-            hand_.RemoveAt(index);
+            Discards.Add(Hand[index].Value);
+            Hand.RemoveAt(index);
         }
 
         private void Agari(HandConfig config)
         {
-            var res = EstimateHandValue(hand_, hand_.Last(), config: config);
+            var res = EstimateHandValue(Hand, Hand.Last(), config: config);
             if (!(res.Error is null)) return;
         }
     }

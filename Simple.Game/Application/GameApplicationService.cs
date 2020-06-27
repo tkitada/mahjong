@@ -37,6 +37,12 @@ namespace Simple.Game.Application
                     var joinReq = JsonConvert.DeserializeObject<JoinReq>(message.Body);
                     JoinEvent(this, new JoinEventArgs(joinReq));
                     ResponseJoin();
+                    Start();
+                    break;
+
+                case "Hand":
+                    var handReq = JsonConvert.DeserializeObject<HandReq>(message.Body);
+                    ResponseHand();
                     break;
 
                 default:
@@ -54,6 +60,20 @@ namespace Simple.Game.Application
             {
                 Header = "Join",
                 Body = JsonConvert.SerializeObject(joinRes)
+            };
+            server_.SendMessage(JsonConvert.SerializeObject(message));
+        }
+
+        private void ResponseHand()
+        {
+            var handRes = new HandRes
+            {
+                Hand = gameManager_.Hand
+            };
+            var message = new Message
+            {
+                Header = "Hand",
+                Body = JsonConvert.SerializeObject(handRes)
             };
             server_.SendMessage(JsonConvert.SerializeObject(message));
         }
