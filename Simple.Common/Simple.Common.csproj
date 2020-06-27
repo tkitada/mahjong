@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\JoinReq.cs" />
+    <Compile Include="Models\JoinRes.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="NamedPipeCommon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

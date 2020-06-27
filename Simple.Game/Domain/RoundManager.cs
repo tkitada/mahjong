@@ -1,6 +1,5 @@
 ﻿using mjlib.HandCalculating;
 using mjlib.Tiles;
-using Simple.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

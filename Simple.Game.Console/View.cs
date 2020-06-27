@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Simple.Game.Console
+﻿namespace Simple.Game.Console
 {
-    class View
+    internal class View
     {
         private static ViewModel vm_;
-        static void Main()
+
+        private static void Main()
         {
             vm_ = new ViewModel();
             while (true)

@@ -22,16 +22,12 @@ namespace Simple.Game.Infrastructure
         public void SendMessage(string message)
         {
             pc_ = new NamedPipeClientStream(".", PlayerServerPipeName, PipeDirection.InOut);
-            if (!pc_.IsConnected)
-            {
-                pc_.Connect();
-            }
+            pc_.Connect();
             if (pc_.IsConnected)
             {
                 using (var sw = new StreamWriter(pc_))
                 {
                     sw.Write(message);
-                    sw.Flush();
                     pc_.WaitForPipeDrain();
                 }
             }
@@ -39,7 +35,6 @@ namespace Simple.Game.Infrastructure
 
         private void WaitConnection()
         {
-
             _ = Task.Run(() =>
             {
                 while (true)

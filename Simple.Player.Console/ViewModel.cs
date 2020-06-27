@@ -1,5 +1,4 @@
 ﻿using Simple.Player.Application;
-using System;
 
 namespace Simple.Player.Console
 {
@@ -9,8 +8,9 @@ namespace Simple.Player.Console
 
         public ViewModel()
         {
-            appService_ = new PlayerApplicationService();
+            appService_ = new PlayerApplicationService("yamada");
 
+            appService_.JoinEvent += (_, e) => System.Console.WriteLine($"id: {e.JoinRes.Id}");
         }
 
     }

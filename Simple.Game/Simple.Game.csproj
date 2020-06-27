@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Application\ApplicationEvent.cs" />
     <Compile Include="Application\GameApplicationService.cs" />
+    <Compile Include="Domain\ClientManager.cs" />
     <Compile Include="Domain\DomainEvent.cs" />
     <Compile Include="Domain\GameManager.cs" />
     <Compile Include="Domain\GameOptionalRules.cs" />

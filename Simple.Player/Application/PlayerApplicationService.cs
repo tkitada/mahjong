@@ -8,23 +8,49 @@ namespace Simple.Player.Application
 {
     public class PlayerApplicationService
     {
+        public event EventHandler<JoinEventArgs> JoinEvent;
+
         private readonly IMessageClient client_;
         private readonly IMessageSender sender_;
         private readonly IMessageReceiver receiver_;
 
-        public PlayerApplicationService()
+        private readonly string name_;
+
+        public PlayerApplicationService(string name)
         {
             client_ = new MessageClient();
             sender_ = new MessageSender(client_);
             receiver_ = new MessageReceiver(client_);
-            receiver_.MessageReceivedEvent += Receiver__MessageReceivedEvent;
+
+            name_ = name;
+            receiver_.MessageReceivedEvent += OnMessageReceived;
+
+            Join();
         }
 
-        private void Receiver__MessageReceivedEvent(object sender, MessageReceivedEventArgs e)
+        private void Join()
+        {
+            var req = new JoinReq
+            {
+                Name = name_
+            };
+            var message = new Message
+            {
+                Header = "Join",
+                Body = JsonConvert.SerializeObject(req)
+            };
+            sender_.Send(JsonConvert.SerializeObject(message));
+        }
+
+        private void OnMessageReceived(object sender, MessageReceivedEventArgs e)
         {
             var message = JsonConvert.DeserializeObject<Message>(e.Message);
             switch (message.Header)
             {
+                case "Join":
+                    var joinRes = JsonConvert.DeserializeObject<JoinRes>(message.Body);
+                    JoinEvent(this, new JoinEventArgs(joinRes));
+                    break;
                 default:
                     break;
             }

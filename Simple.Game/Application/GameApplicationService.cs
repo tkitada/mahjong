@@ -2,11 +2,14 @@
 using Simple.Common.Models;
 using Simple.Game.Domain;
 using Simple.Game.Infrastructure;
+using System;
 
 namespace Simple.Game.Application
 {
     public class GameApplicationService
     {
+        public event EventHandler<JoinEventArgs> JoinEvent;
+
         private readonly IMessageServer server_;
         private readonly IMessageSender sender_;
         private readonly IMessageReceiver receiver_;
@@ -18,11 +21,10 @@ namespace Simple.Game.Application
             server_ = new MessageServer();
             sender_ = new MessageSender(server_);
             receiver_ = new MessageReceiver(server_);
-            receiver_.MessageReceivedEvent += OnReceivedMessage;
+            receiver_.MessageReceivedEvent += OnMessageReceived;
 
             var rules = new GameOptionalRules();
             gameManager_ = new GameManager(rules);
-
         }
 
         public void Start()
@@ -30,14 +32,34 @@ namespace Simple.Game.Application
             gameManager_.Start();
         }
 
-        private void OnReceivedMessage(object sender, MessageReceivedEventArgs e)
+        private void OnMessageReceived(object sender, MessageReceivedEventArgs e)
         {
             var message = JsonConvert.DeserializeObject<Message>(e.Message);
             switch (message.Header)
             {
+                case "Join":
+                    var joinReq = JsonConvert.DeserializeObject<JoinReq>(message.Body);
+                    JoinEvent(this, new JoinEventArgs(joinReq));
+                    ResponseJoin();
+                    break;
+
                 default:
                     break;
             }
+        }
+
+        private void ResponseJoin()
+        {
+            var joinRes = new JoinRes
+            {
+                Id = 0
+            };
+            var message = new Message
+            {
+                Header = "Join",
+                Body = JsonConvert.SerializeObject(joinRes)
+            };
+            sender_.Send(JsonConvert.SerializeObject(message));
         }
     }
 }

@@ -51,6 +51,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Simple.Common\Simple.Common.csproj">
+      <Project>{2B93D3B6-5BCC-4891-A378-4D783C1C7F83}</Project>
+      <Name>Simple.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Simple.Game\Simple.Game.csproj">
       <Project>{72E1836A-3F96-4C2E-8B5D-6F1DE7FA2BA1}</Project>
       <Name>Simple.Game</Name>

@@ -1,5 +1,4 @@
-﻿using Simple.Common.Models;
-using System;
+﻿using System;
 
 namespace Simple.Game.Domain
 {
