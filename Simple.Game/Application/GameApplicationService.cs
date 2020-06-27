@@ -11,17 +11,13 @@ namespace Simple.Game.Application
         public event EventHandler<JoinEventArgs> JoinEvent;
 
         private readonly IMessageServer server_;
-        private readonly IMessageSender sender_;
-        private readonly IMessageReceiver receiver_;
 
         private readonly GameManager gameManager_;
 
         public GameApplicationService()
         {
             server_ = new MessageServer();
-            sender_ = new MessageSender(server_);
-            receiver_ = new MessageReceiver(server_);
-            receiver_.MessageReceivedEvent += OnMessageReceived;
+            server_.MessageReceivedEvent += OnMessageReceived;
 
             var rules = new GameOptionalRules();
             gameManager_ = new GameManager(rules);
@@ -59,7 +55,7 @@ namespace Simple.Game.Application
                 Header = "Join",
                 Body = JsonConvert.SerializeObject(joinRes)
             };
-            sender_.Send(JsonConvert.SerializeObject(message));
+            server_.SendMessage(JsonConvert.SerializeObject(message));
         }
     }
 }

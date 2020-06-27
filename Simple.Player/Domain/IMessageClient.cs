@@ -5,7 +5,7 @@ namespace Simple.Player.Domain
     internal interface IMessageClient
     {
         event EventHandler<MessageReceivedEventArgs> MessageReceivedEvent;
-        void SendMessage(string message);
 
+        void SendMessage(string message);
     }
 }

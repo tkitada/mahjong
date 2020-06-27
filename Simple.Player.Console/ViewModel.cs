@@ -12,6 +12,5 @@ namespace Simple.Player.Console
 
             appService_.JoinEvent += (_, e) => System.Console.WriteLine($"id: {e.JoinRes.Id}");
         }
-
     }
 }

@@ -48,11 +48,7 @@
     <Compile Include="Application\PlayerApplicationService.cs" />
     <Compile Include="Domain\DomainEvent.cs" />
     <Compile Include="Domain\IMessageClient.cs" />
-    <Compile Include="Domain\IMessageReceiver.cs" />
-    <Compile Include="Domain\IMessageSender.cs" />
     <Compile Include="Infrastructure\MessageClient.cs" />
-    <Compile Include="Infrastructure\MessageReceiver.cs" />
-    <Compile Include="Infrastructure\MessageSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

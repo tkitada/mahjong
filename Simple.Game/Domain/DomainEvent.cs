@@ -21,5 +21,4 @@ namespace Simple.Game.Domain
             GameInfo = gameInfo;
         }
     }
-
 }

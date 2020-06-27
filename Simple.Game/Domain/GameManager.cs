@@ -41,7 +41,6 @@ namespace Simple.Game.Domain
                 RoubdInit();
                 roundManager_.Start();
                 if (IsEnd(false)) break;
-
             }
         }
 
@@ -49,9 +48,7 @@ namespace Simple.Game.Domain
         {
             var gameInfo = new GameInformation(point_, playerWind_, roundWind_, roundCount_, honba_, kyotaku_);
             roundManager_ = new RoundManager(rules_, gameInfo);
-
         }
-
 
         private bool IsEnd(bool renchan)
         {
@@ -66,7 +63,6 @@ namespace Simple.Game.Domain
 
         private void UpdateGameInfo()
         {
-
         }
     }
 

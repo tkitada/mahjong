@@ -9,7 +9,6 @@ namespace Simple.Game.Domain
 {
     internal class RoundManager
     {
-
         private readonly GameOptionalRules rules_;
         private readonly GameInformation gameInfo_;
 
@@ -45,7 +44,6 @@ namespace Simple.Game.Domain
             discards_ = new List<int>();
 
             flgFirstHand_ = true;
-
         }
 
         private void Run()
@@ -58,7 +56,6 @@ namespace Simple.Game.Domain
             var tsumoTile = wall_[0];
             hand_.Add(tsumoTile);
             wall_.RemoveAt(0);
-
         }
 
         private void Dahai(int index)

@@ -11,19 +11,15 @@ namespace Simple.Player.Application
         public event EventHandler<JoinEventArgs> JoinEvent;
 
         private readonly IMessageClient client_;
-        private readonly IMessageSender sender_;
-        private readonly IMessageReceiver receiver_;
 
         private readonly string name_;
 
         public PlayerApplicationService(string name)
         {
             client_ = new MessageClient();
-            sender_ = new MessageSender(client_);
-            receiver_ = new MessageReceiver(client_);
 
             name_ = name;
-            receiver_.MessageReceivedEvent += OnMessageReceived;
+            client_.MessageReceivedEvent += OnMessageReceived;
 
             Join();
         }
@@ -39,7 +35,7 @@ namespace Simple.Player.Application
                 Header = "Join",
                 Body = JsonConvert.SerializeObject(req)
             };
-            sender_.Send(JsonConvert.SerializeObject(message));
+            client_.SendMessage(JsonConvert.SerializeObject(message));
         }
 
         private void OnMessageReceived(object sender, MessageReceivedEventArgs e)
@@ -51,10 +47,10 @@ namespace Simple.Player.Application
                     var joinRes = JsonConvert.DeserializeObject<JoinRes>(message.Body);
                     JoinEvent(this, new JoinEventArgs(joinRes));
                     break;
+
                 default:
                     break;
             }
         }
-
     }
 }
