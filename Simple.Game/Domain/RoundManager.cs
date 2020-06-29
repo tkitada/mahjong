@@ -1,5 +1,7 @@
-﻿using mjlib.HandCalculating;
+﻿using mjlib;
+using mjlib.HandCalculating;
 using mjlib.Tiles;
+using Simple.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,16 +52,47 @@ namespace Simple.Game.Domain
             return new TileId(tsumoTile);
         }
 
-        private void Dahai(int index)
+        public void Dahai(int index)
         {
             Discards.Add(Hand[index].Value);
             Hand.RemoveAt(index);
         }
 
-        private void Agari(HandConfig config)
+        public (TileIds, TileId, List<Meld>, HandResponseModel) Agari()
         {
-            var res = EstimateHandValue(Hand, Hand.Last(), config: config);
-            if (!(res.Error is null)) return;
+            var config = new HandConfig(isTsumo: true);
+            var tiles = Hand;
+            var winTile = Hand.Last();
+            List<Meld> melds = null;
+            var result = EstimateHandValue(Hand, Hand.Last(), config: config);
+            var _res = new HandResponseModel
+            {
+                Cost = new CostModel
+                {
+                    Main = result.Cost.Main,
+                    Additional = result.Cost.Additional
+                },
+                Han = result.Han,
+                Fu = result.Fu,
+                Yaku = result.Yaku.Select(x => new YakuModel
+                {
+                    YakuId = x.YakuId,
+                    TenhouId = x.TenhouId,
+                    Name = x.Name,
+                    Japanese = x.Japanese,
+                    English = x.English,
+                    HanOpen = x.HanOpen,
+                    HanClosed = x.HanClosed,
+                    IsYakuman = x.IsYakuman
+                }).ToList(),
+                Error = result.Error,
+                FuDetailSet = result.FuDetailSet.Select(x => new FuDetailModel
+                {
+                    Fu = x.Fu,
+                    Reason = x.Reason
+                }).ToList()
+            };
+            return (tiles, winTile, melds, _res);
         }
     }
 }

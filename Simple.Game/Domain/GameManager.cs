@@ -1,13 +1,14 @@
 ﻿using mjlib;
+using mjlib.HandCalculating;
 using mjlib.Tiles;
+using Simple.Common.Models;
 using System;
+using System.Collections.Generic;
 
 namespace Simple.Game.Domain
 {
     internal class GameManager
     {
-        internal event EventHandler<GameInfoNotificationEventArgs> GameInfoNotificationEvent;
-
         private readonly GameOptionalRules rules_;
         private readonly GameInformation gameInfo_;
         private RoundManager roundManager_;
@@ -39,8 +40,14 @@ namespace Simple.Game.Domain
             return roundManager_.Tsumo();
         }
 
-        private void UpdateGameInfo()
+        public void Dahai(int index)
         {
+            roundManager_.Dahai(index);
+        }
+
+        public (TileIds, TileId, List<Meld>, HandResponseModel) Agari()
+        {
+            return roundManager_.Agari();
         }
     }
 

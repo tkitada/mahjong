@@ -41,13 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\HandReq.cs" />
-    <Compile Include="Models\HandRes.cs" />
-    <Compile Include="Models\JoinReq.cs" />
-    <Compile Include="Models\JoinRes.cs" />
+    <Compile Include="Models\HandResponseModel.cs" />
     <Compile Include="Models\Message.cs" />
-    <Compile Include="Models\TsumoReq.cs" />
-    <Compile Include="Models\TsumoRes.cs" />
+    <Compile Include="Models\Requests.cs" />
+    <Compile Include="Models\Responses.cs" />
     <Compile Include="NamedPipeCommon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

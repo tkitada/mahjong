@@ -35,7 +35,7 @@ namespace Simple.Game.Application
             {
                 case "Join":
                     var joinReq = JsonConvert.DeserializeObject<JoinReq>(message.Body);
-                    JoinEvent(this, new JoinEventArgs(joinReq));
+                    JoinEvent?.Invoke(this, new JoinEventArgs(joinReq));
                     ResponseJoin();
                     Start();
                     break;
@@ -48,6 +48,16 @@ namespace Simple.Game.Application
                 case "Tsumo":
                     var tsumoReq = JsonConvert.DeserializeObject<TsumoReq>(message.Body);
                     ResponseTsumo();
+                    break;
+
+                case "Dahai":
+                    var dahaiReq = JsonConvert.DeserializeObject<DahaiReq>(message.Body);
+                    ResponseDahai(dahaiReq.Index);
+                    break;
+
+                case "Agari":
+                    var agariReq = JsonConvert.DeserializeObject<AgariReq>(message.Body);
+                    ResponseAgari();
                     break;
 
                 default:
@@ -93,6 +103,36 @@ namespace Simple.Game.Application
             {
                 Header = "Tsumo",
                 Body = JsonConvert.SerializeObject(tsumoRes)
+            };
+            server_.SendMessage(JsonConvert.SerializeObject(message));
+        }
+
+        private void ResponseDahai(int index)
+        {
+            gameManager_.Dahai(index);
+            var dahaiRes = new DahaiRes { };
+            var message = new Message
+            {
+                Header = "Dahai",
+                Body = JsonConvert.SerializeObject(dahaiRes)
+            };
+            server_.SendMessage(JsonConvert.SerializeObject(message));
+        }
+
+        private void ResponseAgari()
+        {
+            var (tiles, winTile, melds, result) = gameManager_.Agari();
+            var agariRes = new AgariRes
+            {
+                Tiles = tiles,
+                WinTile = winTile,
+                Melds = melds,
+                Result = result
+            };
+            var message = new Message
+            {
+                Header = "Agari",
+                Body = JsonConvert.SerializeObject(agariRes)
             };
             server_.SendMessage(JsonConvert.SerializeObject(message));
         }

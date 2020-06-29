@@ -16,5 +16,16 @@ namespace Simple.Player.Application
     public class TsumoEventArgs : EventArgs
     {
         public TsumoRes TsumoRes { get; set; }
+        public int Shanten { get; set; }
+    }
+
+    public class DahaiEventArgs : EventArgs
+    {
+        public DahaiRes DahaiRes { get; set; }
+    }
+
+    public class AgariEventArgs : EventArgs
+    {
+        public AgariRes AgariRes { get; set; }
     }
 }

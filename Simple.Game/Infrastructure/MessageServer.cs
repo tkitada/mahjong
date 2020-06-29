@@ -45,7 +45,7 @@ namespace Simple.Game.Infrastructure
                     using (var sr = new StreamReader(ps_))
                     {
                         var message = sr.ReadToEnd();
-                        MessageReceivedEvent(this, new MessageReceivedEventArgs(message));
+                        MessageReceivedEvent?.Invoke(this, new MessageReceivedEventArgs(message));
                     }
                 }
             });
