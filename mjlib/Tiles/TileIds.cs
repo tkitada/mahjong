@@ -77,8 +77,7 @@ namespace mjlib.Tiles
             string Words(IEnumerable<int> suits, int redFive, string suffix) =>
                 suits.Count() == 0
                     ? ""
-                    : string.Join("",
-                        suits.Select(t => t == redFive && printAkaDora
+                    : string.Join("", suits.Select(t => t == redFive && printAkaDora
                             ? "0"
                             : (t / 4 + 1).ToString())) + suffix;
             var manStr = Words(man, FIVE_RED_MAN, "m");

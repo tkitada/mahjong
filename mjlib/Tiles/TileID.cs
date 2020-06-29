@@ -1,4 +1,5 @@
 ﻿using System;
+using static mjlib.Constants;
 
 namespace mjlib.Tiles
 {
@@ -17,6 +18,23 @@ namespace mjlib.Tiles
         public TileKind ToTileKind()
         {
             return new TileKind(Value / 4);
+        }
+
+        public string ToOneLineString(bool printAkaDora = false)
+        {
+            if (Value < 36)
+            {
+                return printAkaDora && Value == FIVE_RED_MAN ? "0m" : $"{Value / 4 + 1}m";
+            }
+            else if (36 <= Value && Value < 72)
+            {
+                return printAkaDora && Value == FIVE_RED_PIN ? "0p" : $"{(Value - 36) / 4 + 1}p";
+            }
+            else if (72 <= Value && Value < 108)
+            {
+                return printAkaDora && Value == FIVE_RED_SOU ? "0s" : $"{(Value - 72) / 4 + 1}s";
+            }
+            return $"{(Value - 108) / 4 + 1}z";
         }
 
         public static TileId Parse(string man = "", string pin = "", string sou = "",
