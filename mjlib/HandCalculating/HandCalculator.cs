@@ -419,7 +419,7 @@ namespace mjlib.HandCalculating
                     }
                     if (han == 0)
                     {
-                        error = "There are no yaku in the hada.";
+                        error = "There are no yaku in the hand.";
                         cost = null;
                     }
 
