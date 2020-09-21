@@ -14,23 +14,19 @@ namespace SingleConsoleApp.Model.ApplicationService
         private ModeType preMode_ = ModeType.Normal;
         private HandResponse result_;
 
-        public SingleConsoleApplicationService()
+        public UpdateContainer Update()
         {
-            gameManager_.AgariEvent += (_, e) =>
+            if (mode_ != ModeType.ConfirmAgari && gameManager_.IsAgari)
             {
                 preMode_ = mode_;
                 mode_ = ModeType.ConfirmAgari;
-                result_ = e.Result;
-            };
-            gameManager_.RyukyokuEvent += (_, __) =>
+                result_ = gameManager_.Result;
+            }
+            if (gameManager_.IsRyukyoku)
             {
                 mode_ = ModeType.DisplayResult;
                 result_ = null;
-            };
-        }
-
-        public UpdateContainer Update()
-        {
+            }
             if (mode_ == ModeType.Riichi)
             {
                 gameManager_.Dahai(13, false);
@@ -63,11 +59,13 @@ namespace SingleConsoleApp.Model.ApplicationService
         public void Agari()
         {
             mode_ = ModeType.DisplayResult;
+            gameManager_.IsAgari = false;
         }
 
         public void CancelAgari()
         {
             mode_ = preMode_;
+            gameManager_.IsAgari = false;
             result_ = null;
         }
 
@@ -89,5 +87,6 @@ namespace SingleConsoleApp.Model.ApplicationService
         public TileCursor TileCursor { get; internal set; }
         public HandResponse Result { get; internal set; }
         public ModeType Mode { get; internal set; }
+        public bool IsRyukyoku { get; private set; }
     }
 }

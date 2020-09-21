@@ -32,7 +32,9 @@ namespace SingleConsoleApp.Views
         {
             var preMode = vm_.Mode;
             vm_.Update();
-            if (preMode != vm_.Mode && (preMode == ModeType.DisplayResult || vm_.Mode == ModeType.DisplayResult))
+            if (preMode != vm_.Mode && (preMode == ModeType.ConfirmAgari
+                                        || preMode == ModeType.DisplayResult
+                                        || vm_.Mode == ModeType.DisplayResult))
             {
                 Clear();
             }
@@ -72,7 +74,7 @@ namespace SingleConsoleApp.Views
                     return;
                 }
                 vm_.Result.Yaku.ForEach(
-                    yakuItem => WriteLine($"{yakuItem.Japanese.PadRight(8, '　')}{yakuItem.HanClosed.ToString().PadLeft(5, '　')}翻"));
+                    yakuItem => WriteLine($"{yakuItem.Japanese.PadRight(5, '　')}\t{yakuItem.HanClosed}翻"));
                 WriteLine($"{vm_.Result.Han}翻 {vm_.Result.Fu}符");
                 WriteLine($"{vm_.Result.Cost.Main * 2}点");
                 vm_.Result.FuDetailSet.ForEach(

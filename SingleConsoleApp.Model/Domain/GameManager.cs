@@ -8,10 +8,6 @@ namespace SingleConsoleApp.Model.Domain
 {
     internal class GameManager
     {
-        public event EventHandler<AgariEventArgs> AgariEvent;
-
-        public event EventHandler<EventArgs> RyukyokuEvent;
-
         private readonly OptionalRules rules_ = new OptionalRules();
         private readonly Wall wall_;
         private bool isDaburuRiichi_;
@@ -19,14 +15,15 @@ namespace SingleConsoleApp.Model.Domain
         public Hand Hand { get; }
         public List<int> Discards { get; private set; } = new List<int>();
         public bool RiichiMode { get; private set; }
+        public bool IsAgari { get; set; }
+        public HandResponse Result { get; private set; }
+        public bool IsRyukyoku { get; private set; }
 
         public GameManager()
         {
             wall_ = new Wall();
             Hand = new Hand(wall_.Haipai());
             Tsumo(new HandConfig(isTenhou: true));
-
-            wall_.RyukyokuEvent += (_, __) => RyukyokuEvent?.Invoke(this, EventArgs.Empty);
         }
 
         public void Tsumo(HandConfig config)
@@ -41,7 +38,13 @@ namespace SingleConsoleApp.Model.Domain
                                                           config: config);
             if (result.Error is null)
             {
-                AgariEvent?.Invoke(this, new AgariEventArgs { Result = result });
+                IsAgari = true;
+                Result = result;
+            }
+            else
+            {
+                IsAgari = false;
+                Result = null;
             }
         }
 
@@ -59,13 +62,20 @@ namespace SingleConsoleApp.Model.Domain
             }
 
             Discards.Add(Hand.Dahai(index).Value);
-            Tsumo(new HandConfig(options: rules_,
-                                 isTsumo: true,
-                                 isRiichi: RiichiMode,
-                                 isIppatsu: isRiichi,
-                                 isDaburuRiichi: RiichiMode && isDaburuRiichi_,
-                                 playerWind: Constants.EAST,
-                                 roundWind: Constants.EAST));
+            if (wall_.RemainCount == 0)
+            {
+                IsRyukyoku = true;
+            }
+            else
+            {
+                Tsumo(new HandConfig(options: rules_,
+                                     isTsumo: true,
+                                     isRiichi: RiichiMode,
+                                     isIppatsu: isRiichi,
+                                     isDaburuRiichi: RiichiMode && isDaburuRiichi_,
+                                     playerWind: Constants.EAST,
+                                     roundWind: Constants.EAST));
+            }
         }
     }
 }
