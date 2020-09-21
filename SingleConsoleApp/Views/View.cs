@@ -1,4 +1,5 @@
-﻿using SingleConsoleApp.ViewModels;
+﻿using SingleConsoleApp.Model.Domain;
+using SingleConsoleApp.ViewModels;
 using System.Timers;
 using static System.Console;
 
@@ -29,15 +30,19 @@ namespace SingleConsoleApp.Views
 
         private static void Update()
         {
+            var preMode = vm_.Mode;
             vm_.Update();
+            if (preMode != vm_.Mode && (preMode == ModeType.DisplayResult || vm_.Mode == ModeType.DisplayResult))
+            {
+                Clear();
+            }
         }
 
         private static void Draw()
         {
             SetCursorPosition(0, 0);
 
-            WriteLine($"ドラ表示牌:{ToCharacter(vm_.DoraIndicate.Value)}\n");
-
+            WriteLine($"ドラ表示牌:{ToCharacter(vm_.DoraIndicators[0].Value)}\n");
             foreach (var tileId in vm_.Hand.SortedTehai)
             {
                 Write(ToCharacter(tileId.Value));
@@ -49,18 +54,43 @@ namespace SingleConsoleApp.Views
             }
             WriteLine("");
 
+            if (vm_.Mode == ModeType.DisplayResult)
+            {
+                WriteLine("");
+                if (vm_.Result is null)
+                {
+                    for (var i = 0; i < vm_.Discards.Count; i++)
+                    {
+                        Write(ToCharacter(vm_.Discards[i]));
+                        if (i % 6 == 5)
+                        {
+                            WriteLine("");
+                        }
+                    }
+                    WriteLine("");
+                    WriteLine("流局");
+                    return;
+                }
+                vm_.Result.Yaku.ForEach(
+                    yakuItem => WriteLine($"{yakuItem.Japanese.PadRight(8, '　')}{yakuItem.HanClosed.ToString().PadLeft(5, '　')}翻"));
+                WriteLine($"{vm_.Result.Han}翻 {vm_.Result.Fu}符");
+                WriteLine($"{vm_.Result.Cost.Main * 2}点");
+                vm_.Result.FuDetailSet.ForEach(
+                    fuItem => WriteLine($"符: {fuItem.Fu}\tReason: {fuItem.Reason}"));
+                return;
+            }
             for (var i = 0; i < 13; i++)
             {
                 Write(vm_.TileCursor.Position == i ? "↑" : "　");
             }
             Write("　");
             Write(vm_.TileCursor.Position == 13 ? "↑" : "　");
-            WriteLine("");
+            WriteLine(vm_.Mode == ModeType.ConfirmAgari ? "\n和了? Yes: Enter / No: Space" : "\n");
 
             for (var i = 0; i < vm_.Discards.Count; i++)
             {
                 Write(ToCharacter(vm_.Discards[i]));
-                if (i % 12 == 11)
+                if (i % 6 == 5)
                 {
                     WriteLine("");
                 }

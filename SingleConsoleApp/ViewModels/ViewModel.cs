@@ -1,24 +1,33 @@
-﻿using mjlib.Tiles;
+﻿using mjlib.HandCalculating;
+using mjlib.Tiles;
 using SingleConsoleApp.Model.ApplicationService;
 using SingleConsoleApp.Model.Domain;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SingleConsoleApp.ViewModels
 {
     internal class ViewModel
     {
-        public TileId DoraIndicate { get; private set; }
+        public TileIds DoraIndicators { get; private set; }
         public Hand Hand { get; private set; }
         public List<int> Discards { get; private set; }
+        public HandResponse Result { get; private set; }
+        public bool ResultDraw { get; private set; }
         public TileCursor TileCursor { get; private set; }
+        public ModeType Mode { get; private set; }
 
         private readonly SingleConsoleApplicationService appService_ = new SingleConsoleApplicationService();
 
         public void Update()
         {
-            (DoraIndicate, Hand, Discards, TileCursor) = appService_.Update();
+            var items = appService_.Update();
+            DoraIndicators = items.DoraIndicators;
+            Hand = items.Hand;
+            Discards = items.Discards;
+            Result = items.Result;
+            TileCursor = items.TileCursor;
+            Mode = items.Mode;
         }
 
         internal void Input(ConsoleKeyInfo keyInfo)
@@ -36,7 +45,39 @@ namespace SingleConsoleApp.ViewModels
                     break;
 
                 case ConsoleKey.Enter:
-                    appService_.Select();
+                    switch (Mode)
+                    {
+                        case ModeType.Normal:
+                            appService_.Dahai(false);
+                            break;
+
+                        case ModeType.ConfirmAgari:
+                            appService_.Agari();
+                            break;
+
+                        case ModeType.DisplayResult:
+                            appService_.Reset();
+                            break;
+
+                        default:
+                            break;
+                    }
+                    break;
+
+                case ConsoleKey.Spacebar:
+                    switch (Mode)
+                    {
+                        case ModeType.Normal:
+                            appService_.Dahai(true);
+                            break;
+
+                        case ModeType.ConfirmAgari:
+                            appService_.CancelAgari();
+                            break;
+
+                        default:
+                            break;
+                    }
                     break;
 
                 default:
